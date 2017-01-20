@@ -1,0 +1,16 @@
+[
+{
+  "modid": "xtones",
+  "name": "Xtones",
+  "description": "Xtones adds modern/futuristic/fantasy style decorative building blocks.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://tehnut.info/",
+  "updateUrl": "http://tehnut.info/",
+  "authorList": [ "TehNut", "Dhvagra", "InsomniaKitten" ],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

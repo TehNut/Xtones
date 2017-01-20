@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "one":      { "textures": { "all": "xtones:blocks/vena/0"  }},
+      "two":      { "textures": { "all": "xtones:blocks/vena/1"  }},
+      "three":    { "textures": { "all": "xtones:blocks/vena/2"  }},
+      "four":     { "textures": { "all": "xtones:blocks/vena/3"  }},
+      "five":     { "textures": { "all": "xtones:blocks/vena/4"  }},
+      "six":      { "textures": { "all": "xtones:blocks/vena/5"  }},
+      "seven":    { "textures": { "all": "xtones:blocks/vena/6"  }},
+      "eight":    { "textures": { "all": "xtones:blocks/vena/7"  }},
+      "nine":     { "textures": { "all": "xtones:blocks/vena/8"  }},
+      "ten":      { "textures": { "all": "xtones:blocks/vena/9" }},
+      "eleven":   { "textures": { "all": "xtones:blocks/vena/10" }},
+      "twelve":   { "textures": { "all": "xtones:blocks/vena/11" }},
+      "thirteen": { "textures": { "all": "xtones:blocks/vena/12" }},
+      "fourteen": { "textures": { "all": "xtones:blocks/vena/13" }},
+      "fifteen":  { "textures": { "all": "xtones:blocks/vena/14" }},
+      "sixteen":  { "textures": { "all": "xtones:blocks/vena/15" }}
+    }
+  }
+}

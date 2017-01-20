@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "one":      { "textures": { "all": "xtones:blocks/kryp/0"  }},
+      "two":      { "textures": { "all": "xtones:blocks/kryp/1"  }},
+      "three":    { "textures": { "all": "xtones:blocks/kryp/2"  }},
+      "four":     { "textures": { "all": "xtones:blocks/kryp/3"  }},
+      "five":     { "textures": { "all": "xtones:blocks/kryp/4"  }},
+      "six":      { "textures": { "all": "xtones:blocks/kryp/5"  }},
+      "seven":    { "textures": { "all": "xtones:blocks/kryp/6"  }},
+      "eight":    { "textures": { "all": "xtones:blocks/kryp/7"  }},
+      "nine":     { "textures": { "all": "xtones:blocks/kryp/8"  }},
+      "ten":      { "textures": { "all": "xtones:blocks/kryp/9" }},
+      "eleven":   { "textures": { "all": "xtones:blocks/kryp/10" }},
+      "twelve":   { "textures": { "all": "xtones:blocks/kryp/11" }},
+      "thirteen": { "textures": { "all": "xtones:blocks/kryp/12" }},
+      "fourteen": { "textures": { "all": "xtones:blocks/kryp/13" }},
+      "fifteen":  { "textures": { "all": "xtones:blocks/kryp/14" }},
+      "sixteen":  { "textures": { "all": "xtones:blocks/kryp/15" }}
+    }
+  }
+}

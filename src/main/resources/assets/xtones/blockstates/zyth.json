@@ -1,0 +1,27 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": { },
+    "model": "cube_all"
+  },
+  "variants": {
+    "variant": {
+      "one":      { "textures": { "all": "xtones:blocks/zyth/0"  }},
+      "two":      { "textures": { "all": "xtones:blocks/zyth/1"  }},
+      "three":    { "textures": { "all": "xtones:blocks/zyth/2"  }},
+      "four":     { "textures": { "all": "xtones:blocks/zyth/3"  }},
+      "five":     { "textures": { "all": "xtones:blocks/zyth/4"  }},
+      "six":      { "textures": { "all": "xtones:blocks/zyth/5"  }},
+      "seven":    { "textures": { "all": "xtones:blocks/zyth/6"  }},
+      "eight":    { "textures": { "all": "xtones:blocks/zyth/7"  }},
+      "nine":     { "textures": { "all": "xtones:blocks/zyth/8"  }},
+      "ten":      { "textures": { "all": "xtones:blocks/zyth/9" }},
+      "eleven":   { "textures": { "all": "xtones:blocks/zyth/10" }},
+      "twelve":   { "textures": { "all": "xtones:blocks/zyth/11" }},
+      "thirteen": { "textures": { "all": "xtones:blocks/zyth/12" }},
+      "fourteen": { "textures": { "all": "xtones:blocks/zyth/13" }},
+      "fifteen":  { "textures": { "all": "xtones:blocks/zyth/14" }},
+      "sixteen":  { "textures": { "all": "xtones:blocks/zyth/15" }}
+    }
+  }
+}
