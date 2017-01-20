@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -28,7 +29,12 @@ public class ModObjects {
 
     public static void initBlocks() {
         GameRegistry.register(BASE.setRegistryName("base"));
-        GameRegistry.register(new ItemBlock(BASE).setRegistryName(BASE.getRegistryName()));
+        GameRegistry.register(new ItemBlock(BASE) {
+            @Override
+            public String getUnlocalizedName(ItemStack stack) {
+                return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
+            }
+        }.setRegistryName(BASE.getRegistryName()));
         // Literally all of these recipe items are cancer and need to be redone by somebody who cares
         // Except for Glaxx
         // *goes back to using Chisel*
