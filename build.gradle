@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "team.chisel:Chisel:MC1.11-0.0.8.3:api"
+    deobfCompile "team.chisel:Chisel:MC1.10.2-0.0.7.7:api"
 }
 
 minecraft {

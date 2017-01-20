@@ -44,7 +44,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
     }
 
     @Override
-    public boolean causesSuffocation(IBlockState state) {
+    public boolean causesSuffocation() {
         return !seeThrough;
     }
 

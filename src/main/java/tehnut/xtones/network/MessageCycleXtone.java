@@ -38,12 +38,12 @@ public class MessageCycleXtone implements IMessage {
         @Override
         public IMessage onMessage(MessageCycleXtone message, MessageContext ctx) {
             if (ConfigHandler.disableScrollCycling) {
-                ctx.getServerHandler().playerEntity.sendStatusMessage(new TextComponentTranslation("chat.xtones.scroll.disable").setStyle(new Style().setColor(TextFormatting.RED)), true);
+                ctx.getServerHandler().playerEntity.sendMessage(new TextComponentTranslation("chat.xtones.scroll.disable").setStyle(new Style().setColor(TextFormatting.RED)));
                 return null;
             }
 
             ItemStack held = ctx.getServerHandler().playerEntity.getHeldItemMainhand();
-            if (held.getItem() instanceof ItemBlockXtone) {
+            if (held != null && held.getItem() instanceof ItemBlockXtone) {
                 int damage = held.getItemDamage();
                 held.setItemDamage(MathHelper.clamp(damage + (message.increment ? -1 : 1), 0, 15));
                 if (damage == held.getItemDamage()) {

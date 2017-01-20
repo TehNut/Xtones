@@ -34,7 +34,7 @@ public class ClientHandler {
         if (Minecraft.getMinecraft().currentScreen == null) {
             EntityPlayer player = Minecraft.getMinecraft().player;
             ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND);
-            if (event.getDwheel() != 0 && SCROLL_CATALYST.isKeyDown() && held.getItem() instanceof ItemBlockXtone) {
+            if (event.getDwheel() != 0 && SCROLL_CATALYST.isKeyDown() && held != null && held.getItem() instanceof ItemBlockXtone) {
                 Xtones.NETWORK_WRAPPER.sendToServer(new MessageCycleXtone(event.getDwheel() > 0));
                 event.setCanceled(true);
             }

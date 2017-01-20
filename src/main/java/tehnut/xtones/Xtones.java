@@ -1,7 +1,7 @@
 package tehnut.xtones;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import tehnut.xtones.compat.CompatChisel;
 import tehnut.xtones.network.MessageCycleXtone;
 
-@Mod(modid = Xtones.ID, name = Xtones.NAME, version = "@VERSION@", acceptedMinecraftVersions = "[1.11,1.12]")
+@Mod(modid = Xtones.ID, name = Xtones.NAME, version = "@VERSION@")
 public class Xtones {
 
     // TODO - Implement JEI support so that looking up any variant will show the recipe
@@ -25,8 +25,8 @@ public class Xtones {
 
     public static final CreativeTabs TAB = new CreativeTabs(ID) {
         @Override
-        public ItemStack getTabIconItem() {
-            return new ItemStack(ModObjects.BASE);
+        public Item getTabIconItem() {
+            return Item.getItemFromBlock(ModObjects.BASE);
         }
 
         @Override
