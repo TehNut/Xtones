@@ -8,6 +8,7 @@ import tehnut.xtones.block.BlockXtone;
 
 import java.util.Map;
 
+// ChiselTones makes a return!
 public class CompatChisel {
 
     public static void init() {

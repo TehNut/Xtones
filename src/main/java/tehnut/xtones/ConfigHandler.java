@@ -6,9 +6,9 @@ import net.minecraftforge.common.config.Config;
 public class ConfigHandler {
 
     @Config.Comment({
-            "How chiseling XTones blocks should function.",
-            "0 - Chisel the Stone Tile into the first variant of each registered XTone block. This makes the individual recipes useless.",
-            "1 - Chisel between each variant of the XTones blocks. This makes the cycling useless.",
+            "How chiseling Xtones blocks should function. [Requires \"Chisel\" by the Chisel Team to be installed]",
+            "0 - Chisel the Stone Tile into the first variant of each registered Xtone block. This makes the individual recipes useless.",
+            "1 - Chisel between each variant of the Xtones blocks. This makes the cycling useless.",
             "Example images can be found on the ChiselTones CurseForge page. Functionality is exactly the same."
     })
     public static int chiselMode = 0;
