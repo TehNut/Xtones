@@ -72,17 +72,7 @@ jar {
     )
 }
 
-// add a javadoc jar
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from javadoc.destinationDir
-    classifier = 'javadoc'
-}
-
-tasks.build.dependsOn sourceJar, javadocJar
-
-tasks.withType(JavaCompile) { task ->
-    task.options.encoding = 'UTF-8'
-}
+tasks.build.dependsOn sourceJar
 
 publishing {
     tasks.publish.dependsOn 'build'
@@ -90,7 +80,6 @@ publishing {
         mavenJava(MavenPublication) {
             artifact jar
             artifact sourceJar
-            artifact javadocJar
         }
     }
     repositories {
@@ -113,6 +102,5 @@ curseforge {
         addGameVersion '1.11.2'
 
         addArtifact sourceJar
-        addArtifact javadocJar
     }
 }
