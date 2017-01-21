@@ -44,7 +44,7 @@ public class ItemBlockXtone extends ItemBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        tooltip.add(I18n.format("tooltip.xtones.type", stack.getItemDamage()));
+        tooltip.add(I18n.format("tooltip.xtones.type", stack.getItemDamage() +1));
         tooltip.add(I18n.format("tooltip.xtones.cycle", ClientHandler.SCROLL_CATALYST.getDisplayName()));
         super.addInformation(stack, playerIn, tooltip, advanced);
     }
