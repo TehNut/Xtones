@@ -30,7 +30,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
     @Override
     public BlockRenderLayer getBlockLayer() {
-        return seeThrough ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
+        return seeThrough ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
     }
 
     @Override
