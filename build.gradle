@@ -27,11 +27,13 @@ archivesBaseName = mod_name
 version = "${mc_version}-${mod_version}-${build_number}"
 
 repositories {
-    maven { url = "http://maven.tterrag.com/" }
+    maven { url "http://maven.tterrag.com/" }
+    maven { url "http://tehnut.info/maven" }
 }
 
 dependencies {
     deobfCompile "team.chisel:Chisel:MC1.11-0.0.8.3:api"
+    deobfCompile "mcp.mobius.waila:Hwyla:1.8.6-B20_1.11"
 }
 
 minecraft {

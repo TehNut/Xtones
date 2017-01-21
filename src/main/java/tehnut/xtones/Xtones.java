@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -52,5 +53,7 @@ public class Xtones {
 
         if (Loader.isModLoaded("chisel"))
             CompatChisel.init();
+        if (Loader.isModLoaded("waila"))
+            FMLInterModComms.sendMessage("waila", "register", "tehnut.xtones.compat.CompatWaila.callback");
     }
 }
