@@ -55,7 +55,7 @@ public class ModObjects {
         register(new BlockXtone("reds", new ItemStack(Blocks.RED_NETHER_BRICK)));
         register(new BlockXtone("reed", new ItemStack(Items.REEDS)));
         register(new BlockXtone("roen", new ItemStack(Items.BONE)));
-        register(new BlockXtone("sols", new ItemStack(Blocks.NETHER_WART)));
+        register(new BlockXtone("sols", new ItemStack(Items.NETHER_WART)));
         register(new BlockXtone("sync", new ItemStack(Items.SUGAR)));
         register(new BlockXtone("tank", new ItemStack(Blocks.IRON_BLOCK)));
         register(new BlockXtone("vect", new ItemStack(Items.ARROW)));
