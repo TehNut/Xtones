@@ -1,9 +1,6 @@
 package tehnut.xtones.compat;
 
-import mcp.mobius.waila.api.IWailaConfigHandler;
-import mcp.mobius.waila.api.IWailaDataAccessor;
-import mcp.mobius.waila.api.IWailaDataProvider;
-import mcp.mobius.waila.api.IWailaRegistrar;
+import mcp.mobius.waila.api.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,16 +12,18 @@ import tehnut.xtones.block.BlockXtone;
 
 import java.util.List;
 
-public class CompatWaila {
+@WailaPlugin
+public class CompatWaila implements IWailaPlugin {
 
-    public static void callback(IWailaRegistrar registrar) {
+    @Override
+    public void register(IWailaRegistrar registrar) {
         registrar.registerHeadProvider(new DataProviderXtones(), BlockXtone.class);
     }
 
     public static class DataProviderXtones implements IWailaDataProvider {
         @Override
         public ItemStack getWailaStack(IWailaDataAccessor accessor, IWailaConfigHandler config) {
-            return null;
+            return accessor.getStack();
         }
 
         @Override
@@ -35,17 +34,17 @@ public class CompatWaila {
 
         @Override
         public List<String> getWailaBody(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-            return null;
+            return currenttip;
         }
 
         @Override
         public List<String> getWailaTail(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-            return null;
+            return currenttip;
         }
 
         @Override
         public NBTTagCompound getNBTData(EntityPlayerMP player, TileEntity te, NBTTagCompound tag, World world, BlockPos pos) {
-            return null;
+            return tag;
         }
     }
 }

@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +17,6 @@ import tehnut.xtones.network.MessageCycleXtone;
 public class Xtones {
 
     // TODO - Implement JEI support so that looking up any variant will show the recipe
-    // TODO - Implement Chisel support to allow chiseling
 
     public static final String ID = "xtones";
     public static final String NAME = "Xtones";
@@ -53,7 +51,5 @@ public class Xtones {
 
         if (Loader.isModLoaded("chisel"))
             CompatChisel.init();
-        if (Loader.isModLoaded("waila"))
-            FMLInterModComms.sendMessage("waila", "register", "tehnut.xtones.compat.CompatWaila.callback");
     }
 }

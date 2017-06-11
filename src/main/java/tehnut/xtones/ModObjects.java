@@ -8,28 +8,31 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import tehnut.xtones.block.BlockEnum;
 import tehnut.xtones.block.BlockXtone;
 import tehnut.xtones.block.ItemBlockXtone;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 import java.util.Map;
 
 public class ModObjects {
 
     public static final Map<String, BlockXtone> BLOCKS = Maps.newHashMap();
-    public static final BlockEnum<BaseType> BASE = (BlockEnum<BaseType>) new BlockEnum<BaseType>(Material.ROCK, BaseType.class).setUnlocalizedName(Xtones.ID + ".base").setCreativeTab(Xtones.TAB).setResistance(3.0F).setHardness(3.0F);
+    public static final BlockEnum<BaseType> BASE = (BlockEnum<BaseType>) new BlockEnum<>(Material.ROCK, BaseType.class).setUnlocalizedName(Xtones.ID + ".base").setCreativeTab(Xtones.TAB).setResistance(3.0F).setHardness(3.0F);
 
     public static void initBlocks() {
         GameRegistry.register(BASE.setRegistryName("base"));
         GameRegistry.register(new ItemBlock(BASE) {
+            @Nonnull
             @Override
             public String getUnlocalizedName(ItemStack stack) {
                 return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
@@ -75,11 +78,15 @@ public class ModObjects {
     }
 
     public static void initRecipes() {
-        if (!ConfigHandler.disableXtoneRecipes)
-            for (BlockXtone block : BLOCKS.values())
-                GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(block, 8), "BBB", "BCB", "BBB", 'B', BASE, 'C', block.getCraftStack()));
+        if (!ConfigHandler.disableXtoneRecipes) {
+            for (BlockXtone block : BLOCKS.values()) {
+                ResourceLocation id = new ResourceLocation(Xtones.ID, block.getName());
+                CraftingManager.func_193372_a(id, new FixedShapedOreRecipe(id, new ItemStack(block, 8), "BBB", "BCB", "BBB", 'B', BASE, 'C', block.getCraftStack()));
+            }
+        }
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BASE, 8), "SS ", "SBS", " SS", 'S', new ItemStack(Blocks.STONE_SLAB), 'B', "stone"));
+        ResourceLocation id = new ResourceLocation(Xtones.ID, "base");
+        CraftingManager.func_193372_a(id, new FixedShapedOreRecipe(id, new ItemStack(BASE, 8), "SS ", "SBS", " SS", 'S', new ItemStack(Blocks.STONE_SLAB), 'B', "stone"));
     }
 
     @SideOnly(Side.CLIENT)
