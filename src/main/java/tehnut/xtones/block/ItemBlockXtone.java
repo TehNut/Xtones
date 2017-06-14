@@ -38,6 +38,9 @@ public class ItemBlockXtone extends ItemBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+        if (!func_194125_a(tab))
+            return;
+
         for (BlockXtone.XtoneType type : xtone.getTypes())
             subItems.add(new ItemStack(this, 1, type.ordinal()));
     }
