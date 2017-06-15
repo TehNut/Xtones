@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
 //    deobfCompile "team.chisel:Chisel:MC1.11-0.0.8.3:api"
-    deobfCompile "mcp.mobius.waila:Hwyla:1.8.16-B30_1.12"
+    deobfCompile "mcp.mobius.waila:Hwyla:1.8.18-B32_1.12"
 }
 
 minecraft {

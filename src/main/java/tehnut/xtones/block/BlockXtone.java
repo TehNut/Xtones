@@ -43,7 +43,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
     }
 
     @Override
-    public boolean isFullyOpaque(IBlockState state) {
+    public boolean isNormalCube(IBlockState state) {
         return !seeThrough;
     }
 

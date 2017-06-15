@@ -8,14 +8,16 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import tehnut.xtones.block.BlockEnum;
 import tehnut.xtones.block.BlockXtone;
 import tehnut.xtones.block.ItemBlockXtone;
@@ -81,12 +83,14 @@ public class ModObjects {
         if (!ConfigHandler.disableXtoneRecipes) {
             for (BlockXtone block : BLOCKS.values()) {
                 ResourceLocation id = new ResourceLocation(Xtones.ID, block.getName());
-                CraftingManager.func_193372_a(id, new FixedShapedOreRecipe(id, new ItemStack(block, 8), "BBB", "BCB", "BBB", 'B', BASE, 'C', block.getCraftStack()));
+                IRecipe recipe = new ShapedOreRecipe(id, new ItemStack(block, 8), CraftingHelper.parseShaped("BBB", "BCB", "BBB", 'B', BASE, 'C', block.getCraftStack()));
+                GameRegistry.register(recipe.setRegistryName(id));
             }
         }
 
         ResourceLocation id = new ResourceLocation(Xtones.ID, "base");
-        CraftingManager.func_193372_a(id, new FixedShapedOreRecipe(id, new ItemStack(BASE, 8), "SS ", "SBS", " SS", 'S', new ItemStack(Blocks.STONE_SLAB), 'B', "stone"));
+        IRecipe recipe = new ShapedOreRecipe(id, new ItemStack(BASE, 8), CraftingHelper.parseShaped("SS ", "SBS", " SS", 'S', new ItemStack(Blocks.STONE_SLAB), 'B', "stone"));
+        GameRegistry.register(recipe.setRegistryName(id));
     }
 
     @SideOnly(Side.CLIENT)
