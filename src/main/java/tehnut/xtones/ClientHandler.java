@@ -10,14 +10,14 @@ import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.client.settings.KeyConflictContext;
 import net.minecraftforge.client.settings.KeyModifier;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import tehnut.xtones.block.ItemBlockXtone;
 import tehnut.xtones.network.MessageCycleXtone;
 
-@SideOnly(Side.CLIENT)
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientHandler {
 
     public static final KeyBinding SCROLL_CATALYST = new KeyBinding("key." + Xtones.ID + ".scroll", KeyConflictContext.IN_GAME, KeyModifier.NONE, Keyboard.KEY_LSHIFT, Xtones.NAME);

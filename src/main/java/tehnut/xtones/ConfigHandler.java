@@ -11,6 +11,7 @@ public class ConfigHandler {
             "1 - Chisel between each variant of the Xtones blocks. This makes the cycling useless.",
             "Example images can be found on the ChiselTones CurseForge page. Functionality is exactly the same."
     })
+    @Config.RangeInt(min = 0, max = 1)
     public static int chiselMode = 0;
 
     @Config.Comment({
