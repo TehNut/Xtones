@@ -27,7 +27,7 @@ public class ClientHandler {
     }
 
     @SubscribeEvent
-    public void onMouseInput(MouseEvent event) {
+    public static void onMouseInput(MouseEvent event) {
         if (ConfigHandler.disableScrollCycling)
             return;
 
