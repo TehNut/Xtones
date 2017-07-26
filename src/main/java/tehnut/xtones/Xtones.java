@@ -10,7 +10,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import tehnut.xtones.compat.CompatChisel;
 import tehnut.xtones.network.MessageCycleXtone;
 
-@Mod(modid = Xtones.ID, name = Xtones.NAME, version = "@VERSION@", acceptedMinecraftVersions = "[1.11,1.12]", dependencies = "required-after:forge@[14.21.0.2348,);")
+@Mod(   modid = Xtones.ID,
+        name = Xtones.NAME,
+        version = "@VERSION@",
+        acceptedMinecraftVersions = "[1.12]",
+        dependencies = "required-after:forge@[14.21.1.2387,);")
 public class Xtones {
 
     // TODO - Implement JEI support so that looking up any variant will show the recipe
