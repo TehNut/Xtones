@@ -13,8 +13,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nonnull;
 
 public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
 
@@ -40,7 +40,7 @@ public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
         return new BlockStateContainer.Builder(this).build(); // Blank to avoid crashes
     }
 
-    @Override
+    @Override @Nonnull
     public final BlockStateContainer getBlockState() {
         return realStateContainer;
     }
@@ -60,12 +60,11 @@ public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
         return getMetaFromState(state);
     }
 
-    @Override
+    @Override @Nonnull
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(this, 1, damageDropped(state));
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> subBlocks) {
         for (E type : types)

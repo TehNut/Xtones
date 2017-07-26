@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tehnut.xtones.ClientHandler;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemBlockXtone extends ItemBlock {
@@ -30,14 +32,13 @@ public class ItemBlockXtone extends ItemBlock {
         return damage;
     }
 
-    @Override
-    public String getHighlightTip(ItemStack stack, String displayName) {
+    @Override @Nonnull
+    public String getHighlightTip(ItemStack stack, @Nonnull String displayName) {
         return super.getHighlightTip(stack, displayName) + " (" + xtone.getTypes()[MathHelper.clamp(stack.getItemDamage(), 0, 15)].getDisplayIndex() + ")";
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> subItems) {
+    public void getSubItems(@Nonnull CreativeTabs tab, @Nonnull NonNullList<ItemStack> subItems) {
         if (!isInCreativeTab(tab))
             return;
 
@@ -45,9 +46,8 @@ public class ItemBlockXtone extends ItemBlock {
             subItems.add(new ItemStack(this, 1, type.ordinal()));
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void addInformation(ItemStack stack, World world, List<String> tooltip, ITooltipFlag flag) {
+    @Override @SideOnly(Side.CLIENT)
+    public void addInformation(@Nonnull ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
         tooltip.add(I18n.format("tooltip.xtones.type", stack.getItemDamage() + 1));
         tooltip.add(I18n.format("tooltip.xtones.cycle", ClientHandler.SCROLL_CATALYST.getDisplayName()));
         super.addInformation(stack, world, tooltip, flag);
