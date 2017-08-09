@@ -27,6 +27,7 @@ import tehnut.xtones.block.BlockEnum;
 import tehnut.xtones.block.BlockXtone;
 import tehnut.xtones.block.ItemBlockXtone;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 import java.util.Map;
 
@@ -89,7 +90,7 @@ public class RegistrarXtones {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(BASE) {
-            public @Override String getUnlocalizedName(ItemStack stack) { return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName(); }
+            public @Override @Nonnull String getUnlocalizedName(ItemStack stack) { return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName(); }
             public @Override int getMetadata(int damage) { return damage; }
         }.setRegistryName(BASE.getRegistryName()));
 
