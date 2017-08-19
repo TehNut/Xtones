@@ -6,22 +6,20 @@ import tehnut.xtones.RegistrarXtones;
 import tehnut.xtones.Xtones;
 import tehnut.xtones.block.BlockXtone;
 
-import java.util.Map;
-
 // ChiselTones makes a return!
 public class CompatChisel {
 
     public static void sendIMC() {
         switch (ConfigHandler.chiselMode) {
             case 0: {
-                for (Map.Entry<String, BlockXtone> entry : RegistrarXtones.BLOCKS.entrySet())
+                for (BlockXtone xtone : RegistrarXtones.BLOCKS)
                     for (int i = 0; i < BlockXtone.XtoneType.values().length; i++)
-                        FMLInterModComms.sendMessage("chisel", "variation:add", entry.getKey() + "|" + entry.getValue().getRegistryName() + "|" + i);
+                        FMLInterModComms.sendMessage("chisel", "variation:add", xtone.getName() + "|" + xtone.getRegistryName() + "|" + i);
                 break;
             }
             case 1: {
-                for (Map.Entry<String, BlockXtone> entry : RegistrarXtones.BLOCKS.entrySet())
-                    FMLInterModComms.sendMessage("chisel", "variation:add", Xtones.ID + "|" + entry.getValue().getRegistryName() + "|0");
+                for (BlockXtone xtone : RegistrarXtones.BLOCKS)
+                    FMLInterModComms.sendMessage("chisel", "variation:add", Xtones.ID + "|" + xtone.getRegistryName() + "|0");
                 break;
             }
         }

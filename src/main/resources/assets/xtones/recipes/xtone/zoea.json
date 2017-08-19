@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    {
+      "type": "xtones:add_crafting"
+    }
+  ],
+  "result": {
+    "item": "xtones:zoea",
+    "data": 0,
+    "count": 8
+  },
+  "pattern": [
+    "BBB",
+    "BCB",
+    "BBB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "xtones:base"
+    },
+    "C": {
+      "item": "minecraft:redstone_block"
+    }
+  }
+}

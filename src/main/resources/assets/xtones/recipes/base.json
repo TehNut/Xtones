@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "xtones:base",
+    "count": 8
+  },
+  "pattern": [
+    "SS ",
+    "SBS",
+    " SS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "#STONE"
+    },
+    "S": {
+      "item": "minecraft:stone_slab",
+      "data": 0
+    }
+  }
+}

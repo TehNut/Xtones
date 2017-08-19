@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "xtones:lamp_flat",
+    "count": 2
+  },
+  "pattern": [
+    "IDI",
+    "SSS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stone_slab",
+      "data": 0
+    },
+    "D": {
+      "item": "#DUSTGLOWSTONE"
+    },
+    "I": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

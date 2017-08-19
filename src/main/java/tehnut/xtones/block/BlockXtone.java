@@ -4,7 +4,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
@@ -22,16 +21,15 @@ import java.util.Locale;
 public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
     private final String name;
-    private final ItemStack craftStack;
 
     private boolean seeThrough;
 
-    public BlockXtone(String name, ItemStack craftStack) {
+    public BlockXtone(String name) {
         super(Material.ROCK, XtoneType.class, "variant");
 
         this.name = name;
-        this.craftStack = craftStack;
 
+        setRegistryName(name);
         setUnlocalizedName(Xtones.ID + "." + name);
         setCreativeTab(Xtones.TAB);
         setResistance(3.0F);
@@ -105,10 +103,6 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
     public String getName() {
         return name;
-    }
-
-    public ItemStack getCraftStack() {
-        return craftStack;
     }
 
     public enum XtoneType implements IStringSerializable {
