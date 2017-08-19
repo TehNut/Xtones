@@ -141,7 +141,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.ENGLISH);
+            return toString().toLowerCase(Locale.ROOT);
         }
     }
 }

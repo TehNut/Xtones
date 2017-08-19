@@ -24,20 +24,22 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tehnut.xtones.block.BlockEnum;
+import tehnut.xtones.block.BlockLamp;
 import tehnut.xtones.block.BlockXtone;
-import tehnut.xtones.block.ItemBlockXtone;
+import tehnut.xtones.block.item.ItemBlockLamp;
+import tehnut.xtones.block.item.ItemBlockXtone;
 
 import javax.annotation.Nonnull;
 import java.util.Locale;
 import java.util.Map;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = Xtones.ID)
 @GameRegistry.ObjectHolder(Xtones.ID)
 public class RegistrarXtones {
 
     public static Map<String, BlockXtone> BLOCKS = Maps.newHashMap();
-    @GameRegistry.ObjectHolder("base")
-    public static final BlockEnum<BaseType> BASE = null;
+    public static final BlockEnum<BaseType> BASE = BlockEnum.dummy(BaseType.class);
+    public static final BlockLamp LAMP_FLAT = new BlockLamp(BlockLamp.LampShape.FLAT);
     
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -48,6 +50,8 @@ public class RegistrarXtones {
                 .setHardness(3.0F)
                 .setRegistryName("base")
         );
+
+        event.getRegistry().register(new BlockLamp(BlockLamp.LampShape.FLAT).setRegistryName("lamp_flat"));
 
         event.getRegistry().registerAll(
                 newXtone("agon", new ItemStack(Items.APPLE)),
@@ -94,6 +98,8 @@ public class RegistrarXtones {
             public @Override int getMetadata(int damage) { return damage; }
         }.setRegistryName(BASE.getRegistryName()));
 
+        event.getRegistry().register(new ItemBlockLamp(LAMP_FLAT).setRegistryName(LAMP_FLAT.getRegistryName()));
+
         for (Map.Entry<String, BlockXtone> entry : BLOCKS.entrySet())
             event.getRegistry().register(new ItemBlockXtone(entry.getValue()).setRegistryName(entry.getKey()));
     }
@@ -124,6 +130,8 @@ public class RegistrarXtones {
 
         for (BaseType type : BaseType.values())
             ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BASE), type.ordinal(), new ModelResourceLocation(BASE.getRegistryName(), "type=" + type.getName()));
+
+        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(LAMP_FLAT), 0, new ModelResourceLocation(LAMP_FLAT.getRegistryName(), "active=false,facing=up"));
     }
     
     private static BlockXtone newXtone(String name, ItemStack craftStack) {
@@ -139,7 +147,7 @@ public class RegistrarXtones {
 
         @Override
         public String getName() {
-            return name().toLowerCase(Locale.ENGLISH);
+            return name().toLowerCase(Locale.ROOT);
         }
     }
 }

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import tehnut.xtones.ConfigHandler;
-import tehnut.xtones.block.ItemBlockXtone;
+import tehnut.xtones.block.item.ItemBlockXtone;
 
 public class MessageCycleXtone implements IMessage {
 

@@ -29,7 +29,7 @@ public class Xtones {
         public boolean hasSearchBar() {
             return true;
         }
-    };
+    }.setBackgroundImageName("item_search.png");
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {

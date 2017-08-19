@@ -1,4 +1,4 @@
-package tehnut.xtones.block;
+package tehnut.xtones.block.item;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import tehnut.xtones.ClientHandler;
+import tehnut.xtones.block.BlockXtone;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

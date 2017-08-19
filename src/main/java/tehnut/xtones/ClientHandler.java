@@ -15,11 +15,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
-import tehnut.xtones.block.ItemBlockXtone;
+import tehnut.xtones.block.item.ItemBlockXtone;
 import tehnut.xtones.network.MessageCycleXtone;
 
 @SideOnly(Side.CLIENT)
-@Mod.EventBusSubscriber(Side.CLIENT)
+@Mod.EventBusSubscriber(value = Side.CLIENT, modid = Xtones.ID)
 public class ClientHandler {
 
     public static final KeyBinding SCROLL_CATALYST = new KeyBinding("key." + Xtones.ID + ".scroll", KeyConflictContext.IN_GAME, KeyModifier.NONE, Keyboard.KEY_LSHIFT, Xtones.NAME);

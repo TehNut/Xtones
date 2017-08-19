@@ -34,7 +34,6 @@ repositories {
 dependencies {
     compile "team.chisel.ctm:CTM:MC1.12-${ctm_version}:api"
     runtime "team.chisel.ctm:CTM:MC1.12-${ctm_version}"
-    deobfCompile "team.chisel:Chisel:MC1.12-${chisel_version}:api"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.12"
 }
 
