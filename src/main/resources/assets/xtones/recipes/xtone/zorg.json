@@ -20,8 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:dye",
-      "data": 3
+      "item": "minecraft:clay",
+      "data": 0
     }
   }
 }
