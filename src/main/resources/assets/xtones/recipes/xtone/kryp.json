@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:clay_ball"
+      "item": "minecraft:stone",
+      "data": 5
     }
   }
 }
