@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:snowball"
+      "item": "minecraft:dye",
+      "data": 10
     }
   }
 }
