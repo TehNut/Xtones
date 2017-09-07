@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:nether_wart"
+      "item": "minecraft:dye",
+      "data": 11
     }
   }
 }
