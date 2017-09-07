@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:red_nether_brick"
+      "item": "minecraft:dye",
+      "data": 1
     }
   }
 }

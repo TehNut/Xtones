@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:sugar"
+      "item": "minecraft:dye",
+      "data": 2
     }
   }
 }

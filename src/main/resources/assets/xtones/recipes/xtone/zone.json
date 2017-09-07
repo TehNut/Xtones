@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:quartz"
+      "item": "minecraft:stone_slab",
+      "data": 3
     }
   }
 }

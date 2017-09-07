@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:carrot"
+      "item": "minecraft:coal",
+      "data": 1
     }
   }
 }
