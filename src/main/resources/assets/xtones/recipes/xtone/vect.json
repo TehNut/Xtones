@@ -20,7 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:arrow"
+      "item": "minecraft:dye",
+      "data": 0
     }
   }
 }
