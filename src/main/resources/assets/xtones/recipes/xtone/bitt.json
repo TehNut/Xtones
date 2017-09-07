@@ -20,8 +20,7 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:coal",
-      "data": 0
+      "item": "minecraft:coal"
     }
   }
 }
