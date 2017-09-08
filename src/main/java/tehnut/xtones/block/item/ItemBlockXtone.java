@@ -33,7 +33,8 @@ public class ItemBlockXtone extends ItemBlock {
         return damage;
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public String getHighlightTip(ItemStack stack, @Nonnull String displayName) {
         return super.getHighlightTip(stack, displayName) + " (" + xtone.getTypes()[MathHelper.clamp(stack.getItemDamage(), 0, 15)].getDisplayIndex() + ")";
     }
@@ -47,7 +48,8 @@ public class ItemBlockXtone extends ItemBlock {
             subItems.add(new ItemStack(this, 1, type.ordinal()));
     }
 
-    @Override @SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
     public void addInformation(@Nonnull ItemStack stack, @Nullable World world, @Nonnull List<String> tooltip, @Nonnull ITooltipFlag flag) {
         tooltip.add(I18n.format("tooltip.xtones.type", stack.getItemDamage() + 1));
         tooltip.add(I18n.format("tooltip.xtones.cycle", ClientHandler.SCROLL_CATALYST.getDisplayName()));

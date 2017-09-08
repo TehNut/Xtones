@@ -1,13 +1,8 @@
 package tehnut.xtones.compat;
 
 import mcp.mobius.waila.api.*;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.translation.I18n;
-import net.minecraft.world.World;
 import tehnut.xtones.block.BlockXtone;
 
 import javax.annotation.Nonnull;
@@ -22,7 +17,8 @@ public class CompatWaila implements IWailaPlugin {
     }
 
     public static class DataProviderXtones implements IWailaDataProvider {
-        @Override @Nonnull
+        @Override
+        @Nonnull
         public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
             currenttip.add(I18n.translateToLocalFormatted("tooltip.xtones.type", itemStack.getItemDamage() + 1));
             return currenttip;

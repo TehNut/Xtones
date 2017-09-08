@@ -16,8 +16,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-import javax.annotation.Nonnull;
-
 public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
 
     private final E[] types;
@@ -42,7 +40,8 @@ public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
         return new BlockStateContainer.Builder(this).build(); // Blank to avoid crashes
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public final BlockStateContainer getBlockState() {
         return realStateContainer;
     }
@@ -62,7 +61,8 @@ public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
         return getMetaFromState(state);
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
         return new ItemStack(this, 1, damageDropped(state));
     }
@@ -87,10 +87,5 @@ public class BlockEnum<E extends Enum<E> & IStringSerializable> extends Block {
 
     public BlockStateContainer getRealStateContainer() {
         return realStateContainer;
-    }
-
-    @Nonnull
-    public static <T extends Enum<T> & IStringSerializable> BlockEnum<T> dummy(Class<T> enumClass) {
-        return new BlockEnum<>(Material.AIR, enumClass);
     }
 }

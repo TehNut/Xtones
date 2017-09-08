@@ -36,7 +36,8 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         setHardness(3.0F);
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return seeThrough ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
     }
@@ -66,17 +67,20 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         return seeThrough ? 0 : super.getLightOpacity(state);
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public Material getMaterial(IBlockState state) {
         return seeThrough ? Material.GLASS : super.getMaterial(state);
     }
 
-    @Override @Nonnull
+    @Override
+    @Nonnull
     public SoundType getSoundType(IBlockState state, World world, BlockPos pos, @Nullable Entity entity) {
         return seeThrough ? SoundType.GLASS : super.getSoundType(state, world, pos, entity);
     }
 
-    @Override @SideOnly(Side.CLIENT)
+    @Override
+    @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side) {
         if (!seeThrough)
             return super.shouldSideBeRendered(state, world, pos, side);

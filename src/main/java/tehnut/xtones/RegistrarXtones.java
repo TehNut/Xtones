@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -24,17 +25,18 @@ import tehnut.xtones.block.item.ItemBlockLamp;
 import tehnut.xtones.block.item.ItemBlockXtone;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
 @Mod.EventBusSubscriber(modid = Xtones.ID)
 @GameRegistry.ObjectHolder(Xtones.ID)
 public class RegistrarXtones {
-    
-    public static final BlockEnum<BaseType> BASE = BlockEnum.dummy(BaseType.class);
-    public static final BlockLamp LAMP_FLAT = new BlockLamp(BlockLamp.LampShape.FLAT);
+
+    public static final Block BASE = Blocks.AIR;
+    public static final Block LAMP_FLAT = Blocks.AIR;
 
     public static List<BlockXtone> BLOCKS;
-    
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(new BlockEnum<>(Material.ROCK, BaseType.class)
@@ -90,8 +92,16 @@ public class RegistrarXtones {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(BASE) {
-            public @Override @Nonnull String getUnlocalizedName(ItemStack stack) { return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName(); }
-            public @Override int getMetadata(int damage) { return damage; }
+            public @Override
+            @Nonnull
+            String getUnlocalizedName(ItemStack stack) {
+                return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
+            }
+
+            public @Override
+            int getMetadata(int damage) {
+                return damage;
+            }
         }.setRegistryName(BASE.getRegistryName()));
 
         event.getRegistry().register(new ItemBlockLamp(LAMP_FLAT).setRegistryName(LAMP_FLAT.getRegistryName()));
