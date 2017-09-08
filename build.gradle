@@ -103,6 +103,8 @@ curseforge {
 		changelog = project.hasProperty('changelog') ? project.changelog : ''
         releaseType = 'release'
 
+        addGameVersion '1.12.1'
+
         addArtifact sourceJar
     }
 }
