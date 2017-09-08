@@ -12,7 +12,7 @@ public class ConfigHandler {
             "Example images can be found on the ChiselTones CurseForge page. Functionality is exactly the same."
     })
     @Config.RangeInt(min = 0, max = 1)
-    public static int chiselMode = 0;
+    public static int chiselMode = 0; // TODO - Change this to an enum?
 
     @Config.Comment({
             "Disables all recipes except the one for the Stone Tile.",

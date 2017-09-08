@@ -13,13 +13,13 @@ public class CompatChisel {
         switch (ConfigHandler.chiselMode) {
             case 0: {
                 for (BlockXtone xtone : RegistrarXtones.BLOCKS)
-                    for (int i = 0; i < BlockXtone.XtoneType.values().length; i++)
-                        FMLInterModComms.sendMessage("chisel", "variation:add", xtone.getName() + "|" + xtone.getRegistryName() + "|" + i);
+                    FMLInterModComms.sendMessage("chisel", "variation:add", Xtones.ID + "|" + xtone.getRegistryName() + "|0");
                 break;
             }
             case 1: {
                 for (BlockXtone xtone : RegistrarXtones.BLOCKS)
-                    FMLInterModComms.sendMessage("chisel", "variation:add", Xtones.ID + "|" + xtone.getRegistryName() + "|0");
+                    for (int i = 0; i < BlockXtone.XtoneType.values().length; i++)
+                        FMLInterModComms.sendMessage("chisel", "variation:add", xtone.getName() + "|" + xtone.getRegistryName() + "|" + i);
                 break;
             }
         }
