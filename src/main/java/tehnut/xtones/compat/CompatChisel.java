@@ -32,6 +32,9 @@ public class CompatChisel {
                     }
                 break;
             }
+            case 2: {
+                break;
+            }
         }
     }
 }

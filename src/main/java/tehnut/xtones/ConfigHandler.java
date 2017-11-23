@@ -9,9 +9,10 @@ public class ConfigHandler {
             "How chiseling Xtones blocks should function. [Requires \"Chisel\" by the Chisel Team to be installed]",
             "0 - Chisel the Stone Tile into the first variant of each registered Xtone block. This makes the individual recipes useless.",
             "1 - Chisel between each variant of the Xtones blocks. This makes the cycling useless.",
+            "2 - Disable Chisel compatibility altogether.",
             "Example images can be found on the ChiselTones CurseForge page. Functionality is exactly the same."
     })
-    @Config.RangeInt(min = 0, max = 1)
+    @Config.RangeInt(min = 0, max = 2)
     public static int chiselMode = 0; // TODO - Change this to an enum?
 
     @Config.Comment({
