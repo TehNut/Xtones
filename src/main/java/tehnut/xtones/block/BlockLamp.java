@@ -17,10 +17,8 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ChunkCache;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import tehnut.xtones.Xtones;
 
 import javax.annotation.Nonnull;
@@ -62,9 +60,6 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
 
     @Override
     public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-        if (world.isRemote)
-            return;
-
         if (state.getValue(ACTIVE) && !world.isBlockPowered(pos))
             world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
         else if (!state.getValue(ACTIVE) && world.isBlockPowered(pos))
@@ -73,9 +68,6 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
 
     @Override
     public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        if (world.isRemote)
-            return;
-
         if (state.getValue(ACTIVE) && !world.isBlockPowered(pos))
             world.scheduleUpdate(pos, this, 4);
         else if (!state.getValue(ACTIVE) && world.isBlockPowered(pos))
@@ -90,10 +82,21 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
     }
 
     @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        if (world.isRemote)
-            return;
+    public IBlockState getStateFromMeta(int meta) {
+        EnumFacing facing = EnumFacing.values()[meta & 0b111];
+        boolean lit = meta >> 0b11 == 1;
+        return getDefaultState().withProperty(getProperty(), facing).withProperty(ACTIVE, lit);
+    }
 
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        int facing = state.getValue(getProperty()).ordinal();
+        int active = (state.getValue(ACTIVE) ? 1 : 0) << 0b11;
+        return facing | active;
+    }
+
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
         if (state.getValue(ACTIVE) && !world.isBlockPowered(pos))
             world.setBlockState(pos, state.withProperty(ACTIVE, false));
     }
@@ -101,17 +104,6 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(getProperty(), facing);
-    }
-
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess worldAccess, BlockPos pos) {
-        if (worldAccess instanceof ChunkCache) {
-            World world = ReflectionHelper.getPrivateValue(ChunkCache.class, (ChunkCache) worldAccess, "field_72815_e", "world");
-            if (world.isBlockPowered(pos))
-                return state.withProperty(ACTIVE, true);
-        }
-
-        return super.getActualState(state, worldAccess, pos);
     }
 
     @Override
