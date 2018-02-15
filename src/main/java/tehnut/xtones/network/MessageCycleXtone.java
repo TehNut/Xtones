@@ -6,6 +6,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -37,22 +38,24 @@ public class MessageCycleXtone implements IMessage {
     public static class Handler implements IMessageHandler<MessageCycleXtone, IMessage> {
         @Override
         public IMessage onMessage(MessageCycleXtone message, MessageContext ctx) {
-            if (ConfigHandler.disableScrollCycling) {
-                ctx.getServerHandler().player.sendStatusMessage(new TextComponentTranslation("chat.xtones.scroll.disable").setStyle(new Style().setColor(TextFormatting.RED)), true);
-                return null;
-            }
-
-            ItemStack held = ctx.getServerHandler().player.getHeldItemMainhand();
-            if (held.getItem() instanceof ItemBlockXtone) {
-                int damage = held.getItemDamage();
-                held.setItemDamage(MathHelper.clamp(damage + (message.increment ? -1 : 1), 0, 15));
-                if (damage == held.getItemDamage()) {
-                    if (held.getItemDamage() == 0)
-                        held.setItemDamage(15);
-                    else if (held.getItemDamage() == 15)
-                        held.setItemDamage(0);
+            FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> {
+                if (ConfigHandler.disableScrollCycling) {
+                    ctx.getServerHandler().player.sendStatusMessage(new TextComponentTranslation("chat.xtones.scroll.disable").setStyle(new Style().setColor(TextFormatting.RED)), true);
+                    return;
                 }
-            }
+
+                ItemStack held = ctx.getServerHandler().player.getHeldItemMainhand();
+                if (held.getItem() instanceof ItemBlockXtone) {
+                    int damage = held.getItemDamage();
+                    held.setItemDamage(MathHelper.clamp(damage + (message.increment ? -1 : 1), 0, 15));
+                    if (damage == held.getItemDamage()) {
+                        if (held.getItemDamage() == 0)
+                            held.setItemDamage(15);
+                        else if (held.getItemDamage() == 15)
+                            held.setItemDamage(0);
+                    }
+                }
+            });
             return null;
         }
     }
