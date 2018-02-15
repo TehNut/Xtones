@@ -94,16 +94,42 @@ publishing {
     }
 }
 
+String getChangelogText() {
+    def changelogFile = new File('changelog.txt')
+    String str = ''
+    String separator = '---'
+    int lineCount = 0
+    boolean done = false
+    changelogFile.eachLine {
+        if (done || it == null) {
+            return
+        }
+        if (lineCount < 3) {
+            lineCount++
+            if (it.startsWith(separator)) {
+                return
+            }
+        }
+        if (!it.startsWith(separator)) {
+            str += "$it" + (lineCount < 3 ? ':\n\n' : '\n')
+            return
+        }
+        done = true // once we go past the first version block, parse no more
+    }
+    return str
+}
+
 curseforge {
     if (project.hasProperty('curse_key_TehNut'))
         apiKey = project.curse_key_TehNut
 
     project {
         id = "${curse_id}"
-		changelog = project.hasProperty('changelog') ? project.changelog : ''
+		changelog = getChangelogText()
         releaseType = 'release'
 
         addGameVersion '1.12.1'
+        addGameVersion '1.12.2'
 
         addArtifact sourceJar
     }
