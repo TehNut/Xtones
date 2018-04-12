@@ -92,14 +92,14 @@ public class RegistrarXtones {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(BASE) {
-            public @Override
+            @Override
             @Nonnull
-            String getUnlocalizedName(ItemStack stack) {
+            public String getUnlocalizedName(ItemStack stack) {
                 return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
             }
 
-            public @Override
-            int getMetadata(int damage) {
+            @Override
+            public int getMetadata(int damage) {
                 return damage;
             }
         }.setRegistryName(BASE.getRegistryName()));
