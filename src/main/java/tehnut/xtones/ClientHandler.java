@@ -33,13 +33,17 @@ public class ClientHandler {
         if (ConfigHandler.disableScrollCycling)
             return;
 
-        if (Minecraft.getMinecraft().currentScreen == null) {
+        if (event.getDwheel() != 0 && Minecraft.getMinecraft().currentScreen == null && SCROLL_CATALYST.isKeyDown()) {
             EntityPlayer player = Minecraft.getMinecraft().player;
-            ItemStack held = player.getHeldItem(EnumHand.MAIN_HAND);
-            if (event.getDwheel() != 0 && SCROLL_CATALYST.isKeyDown() && held.getItem() instanceof ItemBlockXtone) {
-                Xtones.NETWORK_WRAPPER.sendToServer(new MessageCycleXtone(event.getDwheel() > 0));
+            EnumHand hand = EnumHand.MAIN_HAND;
+            if (isXtone(player.getHeldItem(hand)) || isXtone(player.getHeldItem(hand = EnumHand.OFF_HAND))) {
+                Xtones.NETWORK_WRAPPER.sendToServer(new MessageCycleXtone(hand, event.getDwheel() > 0));
                 event.setCanceled(true);
             }
         }
+    }
+
+    private static boolean isXtone(ItemStack stack) {
+        return stack.getItem() instanceof ItemBlockXtone;
     }
 }

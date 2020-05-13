@@ -2,7 +2,7 @@ package tehnut.xtones.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
@@ -15,23 +15,27 @@ import tehnut.xtones.block.item.ItemBlockXtone;
 
 public class MessageCycleXtone implements IMessage {
 
-    public boolean increment;
+    private EnumHand hand;
+    private boolean increment;
 
     public MessageCycleXtone() {
 
     }
 
-    public MessageCycleXtone(boolean increment) {
+    public MessageCycleXtone(EnumHand hand, boolean increment) {
+        this.hand = hand;
         this.increment = increment;
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        this.increment = buf.readBoolean();
+        hand = EnumHand.values()[buf.readByte()];
+        increment = buf.readBoolean();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
+        buf.writeByte(hand.ordinal());
         buf.writeBoolean(increment);
     }
 
@@ -44,16 +48,9 @@ public class MessageCycleXtone implements IMessage {
                     return;
                 }
 
-                ItemStack held = ctx.getServerHandler().player.getHeldItemMainhand();
+                ItemStack held = ctx.getServerHandler().player.getHeldItem(message.hand);
                 if (held.getItem() instanceof ItemBlockXtone) {
-                    int damage = held.getItemDamage();
-                    held.setItemDamage(MathHelper.clamp(damage + (message.increment ? -1 : 1), 0, 15));
-                    if (damage == held.getItemDamage()) {
-                        if (held.getItemDamage() == 0)
-                            held.setItemDamage(15);
-                        else if (held.getItemDamage() == 15)
-                            held.setItemDamage(0);
-                    }
+                    held.setItemDamage((held.getItemDamage() + (message.increment ? 1 : -1)) & 15);
                 }
             });
             return null;
