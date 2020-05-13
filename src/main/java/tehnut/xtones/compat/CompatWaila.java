@@ -17,7 +17,7 @@ public class CompatWaila implements IWailaPlugin {
             @Nonnull
             @Override
             public List<String> getWailaHead(ItemStack itemStack, List<String> currenttip, IWailaDataAccessor accessor, IWailaConfigHandler config) {
-                currenttip.add(I18n.format("tooltip.xtones.type", itemStack.getItemDamage() + 1));
+                currenttip.add(I18n.format("tooltip.xtones.type", (itemStack.getItemDamage() & 15) + 1));
                 return currenttip;
             }
         }, BlockXtone.class);
