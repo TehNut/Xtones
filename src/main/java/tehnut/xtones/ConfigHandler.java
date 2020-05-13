@@ -1,8 +1,13 @@
 package tehnut.xtones;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = Xtones.ID)
+@Mod.EventBusSubscriber(modid = Xtones.ID)
 public class ConfigHandler {
 
     @Config.Comment({
@@ -25,4 +30,9 @@ public class ConfigHandler {
             "Mainly for use with Chisel installed and chiselMode being set to 1."
     })
     public static boolean disableScrollCycling = false;
+
+    @SubscribeEvent
+    public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+        if (Xtones.ID.equals(event.getModID())) ConfigManager.sync(Xtones.ID, Config.Type.INSTANCE);
+    }
 }
