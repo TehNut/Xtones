@@ -29,14 +29,14 @@ public class MessageCycleXtone implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        hand = EnumHand.values()[buf.readByte()];
         increment = buf.readBoolean();
+        hand = buf.isReadable(Byte.BYTES) ? EnumHand.values()[buf.readByte()] : EnumHand.MAIN_HAND;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        buf.writeByte(hand.ordinal());
         buf.writeBoolean(increment);
+        buf.writeByte(hand.ordinal());
     }
 
     public static class Handler implements IMessageHandler<MessageCycleXtone, IMessage> {
