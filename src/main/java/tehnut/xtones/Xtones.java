@@ -10,6 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tehnut.xtones.compat.CompatChisel;
+import tehnut.xtones.compat.CompatChiselsAndBits;
 import tehnut.xtones.network.MessageCycleXtone;
 
 @Mod(modid = Xtones.ID, name = Xtones.NAME, version = "@VERSION@")
@@ -40,6 +41,8 @@ public class Xtones {
 
         if (Loader.isModLoaded("chisel"))
             CompatChisel.sendIMC();
+        if (Loader.isModLoaded("chiselsandbits"))
+            CompatChiselsAndBits.sendIMC();
 
         LOGGER.info("Xtones has loaded with {} unique blocks. If you are struggling to keep within 4096 IDs, you may want to disable some of these.", RegistrarXtones.BLOCKS.size() + 2); // +2 because lamp and base
     }
