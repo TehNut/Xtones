@@ -15,7 +15,7 @@ public class CompatChisel {
     public static void sendIMC() {
         if (ConfigHandler.chiselMode == 2)
             return;
-        for (BlockXtone block : RegistrarXtones.BLOCKS) {
+        for (BlockXtone block : RegistrarXtones.getBlocks()) {
             if (ConfigHandler.chiselMode == 0) {
                 add(variation(block, Xtones.ID));
             } else {

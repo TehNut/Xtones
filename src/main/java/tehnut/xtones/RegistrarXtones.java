@@ -34,7 +34,11 @@ public class RegistrarXtones {
     public static final Block BASE = Blocks.AIR;
     public static final Block LAMP_FLAT = Blocks.AIR;
 
-    public static final List<BlockXtone> BLOCKS = new ArrayList<>(Xtones.TONES.size());
+    private static final List<BlockXtone> BLOCKS = new ArrayList<>(Xtones.TONES.size());
+
+    public static List<BlockXtone> getBlocks() {
+        return BLOCKS;
+    }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
