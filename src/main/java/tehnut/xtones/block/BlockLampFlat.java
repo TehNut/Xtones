@@ -3,18 +3,16 @@ package tehnut.xtones.block;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -22,7 +20,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockLampFlat extends BlockEnum<EnumFacing> {
+public class BlockLampFlat extends BlockDirectional {
 
     public static final ImmutableMap<EnumFacing, AxisAlignedBB> SHAPES =
         Maps.immutableEnumMap(ImmutableMap.<EnumFacing, AxisAlignedBB>builder()
@@ -37,9 +35,10 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
     public static final IProperty<Boolean> ACTIVE = PropertyBool.create("active");
 
     public BlockLampFlat() {
-        super(Material.GLASS, EnumFacing.class, "facing");
+        super(Material.GLASS);
 
-        setDefaultState(getDefaultState().withProperty(ACTIVE, false));
+        setLightOpacity(0);
+        setDefaultState(getDefaultState().withProperty(ACTIVE, false).withProperty(FACING, EnumFacing.NORTH));
     }
 
     @Override
@@ -49,12 +48,12 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
 
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess access, IBlockState state, BlockPos pos, EnumFacing facing) {
-        return state.getValue(getProperty()) == EnumFacing.DOWN ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+        return state.getValue(FACING) == facing.getOpposite() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return SHAPES.get(state.getValue(getProperty()));
+        return SHAPES.get(state.getValue(FACING));
     }
 
     @Override
@@ -72,7 +71,7 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
         else if (!state.getValue(ACTIVE) && world.isBlockPowered(pos))
             world.setBlockState(pos, state.withProperty(ACTIVE, true));
 
-        EnumFacing facing = state.getValue(getProperty());
+        EnumFacing facing = state.getValue(FACING);
         BlockPos reversePos = pos.offset(facing.getOpposite());
         if (!world.isSideSolid(reversePos, facing, false)) {
             world.setBlockToAir(pos);
@@ -84,12 +83,12 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
     public IBlockState getStateFromMeta(int meta) {
         EnumFacing facing = EnumFacing.values()[meta & 0b111];
         boolean lit = meta >> 0b11 == 1;
-        return getDefaultState().withProperty(getProperty(), facing).withProperty(ACTIVE, lit);
+        return getDefaultState().withProperty(FACING, facing).withProperty(ACTIVE, lit);
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        int facing = state.getValue(getProperty()).ordinal();
+        int facing = state.getValue(FACING).ordinal();
         int active = (state.getValue(ACTIVE) ? 1 : 0) << 0b11;
         return facing | active;
     }
@@ -102,17 +101,7 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
 
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(getProperty(), facing);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> subBlocks) {
-        subBlocks.add(new ItemStack(this));
-    }
-
-    @Override
-    public int damageDropped(IBlockState state) {
-        return 0;
+        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(FACING, facing);
     }
 
     @Override
@@ -122,11 +111,6 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
 
     @Override
     public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    public boolean causesSuffocation(IBlockState state) {
         return false;
     }
 
@@ -141,12 +125,7 @@ public class BlockLampFlat extends BlockEnum<EnumFacing> {
     }
 
     @Override
-    public int getLightOpacity(IBlockState state) {
-        return 0;
-    }
-
-    @Override
-    protected BlockStateContainer createStateContainer() {
-        return new BlockStateContainer.Builder(this).add(getProperty(), ACTIVE).build();
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, ACTIVE, FACING);
     }
 }
