@@ -40,7 +40,7 @@ public class RegistrarXtones {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(new BlockEnum<>(Material.ROCK, BaseType.class)
-                .setUnlocalizedName(Xtones.ID + ".base")
+                .setTranslationKey(Xtones.ID + ".base")
                 .setCreativeTab(Xtones.TAB)
                 .setResistance(3.0F)
                 .setHardness(3.0F)
@@ -94,8 +94,8 @@ public class RegistrarXtones {
         event.getRegistry().register(new ItemBlock(BASE) {
             @Override
             @Nonnull
-            public String getUnlocalizedName(ItemStack stack) {
-                return super.getUnlocalizedName(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
+            public String getTranslationKey(ItemStack stack) {
+                return super.getTranslationKey(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
             }
 
             @Override

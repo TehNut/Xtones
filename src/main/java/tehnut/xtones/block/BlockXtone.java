@@ -30,7 +30,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         this.name = name;
 
         setRegistryName(name);
-        setUnlocalizedName(Xtones.ID + "." + name);
+        setTranslationKey(Xtones.ID + "." + name);
         setCreativeTab(Xtones.TAB);
         setResistance(3.0F);
         setHardness(3.0F);
@@ -38,7 +38,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
     @Override
     @Nonnull
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return seeThrough ? BlockRenderLayer.TRANSLUCENT : BlockRenderLayer.SOLID;
     }
 

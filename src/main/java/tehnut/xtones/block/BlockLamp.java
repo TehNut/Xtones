@@ -37,7 +37,7 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
 
         this.shape = shape;
 
-        setUnlocalizedName(Xtones.ID + ".lamp." + shape.getName());
+        setTranslationKey(Xtones.ID + ".lamp." + shape.getName());
         setCreativeTab(Xtones.TAB);
         setDefaultState(getDefaultState().withProperty(ACTIVE, false));
         setHardness(0.5F);

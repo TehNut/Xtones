@@ -13,6 +13,8 @@ import tehnut.xtones.compat.CompatChisel;
 import tehnut.xtones.compat.CompatChiselsAndBits;
 import tehnut.xtones.network.MessageCycleXtone;
 
+import javax.annotation.Nonnull;
+
 @Mod(modid = Xtones.ID, name = Xtones.NAME, version = "@VERSION@")
 public class Xtones {
 
@@ -25,7 +27,8 @@ public class Xtones {
 
     public static final CreativeTabs TAB = new CreativeTabs(ID) {
         @Override
-        public ItemStack getTabIconItem() {
+        @Nonnull
+        public ItemStack createIcon() {
             return new ItemStack(RegistrarXtones.BASE);
         }
 
