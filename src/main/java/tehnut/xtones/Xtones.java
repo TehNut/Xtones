@@ -47,6 +47,10 @@ public class Xtones {
         }
     }.setBackgroundImageName("item_search.png");
 
+    public static boolean isSeeThrough(String tone) {
+        return "glaxx".equals(tone);
+    }
+
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         NETWORK_WRAPPER.registerMessage(MessageCycleXtone.Handler.class, MessageCycleXtone.class, 0, Side.SERVER);

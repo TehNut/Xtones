@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import tehnut.xtones.Xtones;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -30,10 +31,10 @@ public class BlockXtone extends Block {
 
     private final boolean seeThrough;
 
-    public BlockXtone(String name) {
+    public BlockXtone(String tone) {
         super(Material.ROCK);
 
-        seeThrough = "glaxx".equals(name);
+        seeThrough = Xtones.isSeeThrough(tone);
     }
 
     @Override
