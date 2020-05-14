@@ -6,7 +6,6 @@ import net.minecraftforge.fml.common.event.FMLInterModComms;
 import tehnut.xtones.ConfigHandler;
 import tehnut.xtones.RegistrarXtones;
 import tehnut.xtones.Xtones;
-import tehnut.xtones.block.BlockXtone;
 
 
 // ChiselTones makes a return!
@@ -15,7 +14,7 @@ public class CompatChisel {
     public static void sendIMC() {
         if (ConfigHandler.chiselMode == 2)
             return;
-        for (BlockXtone block : RegistrarXtones.getBlocks()) {
+        for (Block block : RegistrarXtones.getBlocks()) {
             if (ConfigHandler.chiselMode == 0) {
                 add(variation(block, Xtones.ID));
             } else {

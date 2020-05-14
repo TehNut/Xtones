@@ -1,5 +1,6 @@
 package tehnut.xtones.block.item;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,12 +19,9 @@ import java.util.List;
 
 public class ItemBlockXtone extends ItemBlock {
 
-    private final BlockXtone xtone;
-
-    public ItemBlockXtone(BlockXtone block) {
+    public ItemBlockXtone(Block block) {
         super(block);
 
-        this.xtone = block;
         setHasSubtypes(true);
     }
 
@@ -43,8 +41,8 @@ public class ItemBlockXtone extends ItemBlock {
         if (!isInCreativeTab(tab))
             return;
 
-        for (BlockXtone.XtoneType type : xtone.getTypes())
-            subItems.add(new ItemStack(this, 1, type.ordinal()));
+        for (BlockXtone.Variant variant : BlockXtone.Variant.values())
+            subItems.add(new ItemStack(this, 1, variant.ordinal()));
     }
 
     @Override

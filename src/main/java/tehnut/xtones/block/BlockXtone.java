@@ -1,12 +1,19 @@
 package tehnut.xtones.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -17,12 +24,16 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
+public class BlockXtone extends Block {
 
-    private boolean seeThrough;
+    public static final IProperty<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
+
+    private final boolean seeThrough;
 
     public BlockXtone(String name) {
-        super(Material.ROCK, XtoneType.class, "variant");
+        super(Material.ROCK);
+
+        seeThrough = "glaxx".equals(name);
     }
 
     @Override
@@ -78,7 +89,7 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         if (neighbor.getBlock() != this)
             return true;
 
-        if (neighbor.getValue(getProperty()) != state.getValue(getProperty()))
+        if (neighbor.getValue(VARIANT) != state.getValue(VARIANT))
             return true;
 
         return false;
@@ -89,12 +100,33 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         return !seeThrough;
     }
 
-    public BlockXtone setSeeThrough() {
-        this.seeThrough = true;
-        return this;
+    @Override
+    protected final BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, VARIANT);
     }
 
-    public enum XtoneType implements IStringSerializable {
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState().withProperty(VARIANT, Variant.VARIANTS[meta]);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(VARIANT).ordinal();
+    }
+
+    @Override
+    public int damageDropped(IBlockState state) {
+        return getMetaFromState(state);
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> subBlocks) {
+        for (Variant variant : Variant.VARIANTS)
+            subBlocks.add(new ItemStack(this, 1, variant.ordinal()));
+    }
+
+    public enum Variant implements IStringSerializable {
         ONE,
         TWO,
         THREE,
@@ -112,19 +144,11 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
         FIFTEEN,
         SIXTEEN;
 
-        private final int displayIndex;
-
-        XtoneType() {
-            this.displayIndex = ordinal() + 1;
-        }
-
-        public int getDisplayIndex() {
-            return displayIndex;
-        }
+        private static final Variant[] VARIANTS = values();
 
         @Override
         public String getName() {
-            return toString().toLowerCase(Locale.ROOT);
+            return name().toLowerCase(Locale.ROOT);
         }
     }
 }
