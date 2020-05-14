@@ -1,6 +1,5 @@
 package tehnut.xtones;
 
-import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -9,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -25,6 +23,7 @@ import tehnut.xtones.block.item.ItemBlockLamp;
 import tehnut.xtones.block.item.ItemBlockXtone;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -35,7 +34,7 @@ public class RegistrarXtones {
     public static final Block BASE = Blocks.AIR;
     public static final Block LAMP_FLAT = Blocks.AIR;
 
-    public static List<BlockXtone> BLOCKS;
+    public static final List<BlockXtone> BLOCKS = new ArrayList<>(Xtones.TONES.size());
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -49,44 +48,11 @@ public class RegistrarXtones {
 
         event.getRegistry().register(new BlockLamp(BlockLamp.LampShape.FLAT).setRegistryName("lamp_flat"));
 
-        BLOCKS = Lists.newArrayList(
-                new BlockXtone("agon"),
-                new BlockXtone("azur"),
-                new BlockXtone("bitt"),
-                new BlockXtone("cray"),
-                new BlockXtone("fort"),
-                new BlockXtone("glaxx").setSeeThrough(),
-                new BlockXtone("iszm"),
-                new BlockXtone("jelt"),
-                new BlockXtone("korp"),
-                new BlockXtone("kryp"),
-                new BlockXtone("lair"),
-                new BlockXtone("lave"),
-                new BlockXtone("mint"),
-                new BlockXtone("myst"),
-                new BlockXtone("reds"),
-                new BlockXtone("reed"),
-                new BlockXtone("roen"),
-                new BlockXtone("sols"),
-                new BlockXtone("sync"),
-                new BlockXtone("tank"),
-                new BlockXtone("vect"),
-                new BlockXtone("vena"),
-                new BlockXtone("zane"),
-                new BlockXtone("zech"),
-                new BlockXtone("zest"),
-                new BlockXtone("zeta"),
-                new BlockXtone("zion"),
-                new BlockXtone("zkul"),
-                new BlockXtone("zoea"),
-                new BlockXtone("zome"),
-                new BlockXtone("zone"),
-                new BlockXtone("zorg"),
-                new BlockXtone("ztyl"),
-                new BlockXtone("zyth")
-        );
-
-        event.getRegistry().registerAll(BLOCKS.toArray(new Block[0]));
+        for (String tone : Xtones.TONES) {
+            BlockXtone block = new BlockXtone(tone);
+            event.getRegistry().register(block);
+            BLOCKS.add(block);
+        }
     }
 
     @SubscribeEvent
@@ -95,7 +61,7 @@ public class RegistrarXtones {
             @Override
             @Nonnull
             public String getTranslationKey(ItemStack stack) {
-                return super.getTranslationKey(stack) + "." + BaseType.values()[MathHelper.clamp(stack.getItemDamage(), 0, BaseType.values().length)].getName();
+                return super.getTranslationKey(stack) + "." + BaseType.getName(stack);
             }
 
             @Override
@@ -128,6 +94,12 @@ public class RegistrarXtones {
     public enum BaseType implements IStringSerializable {
         TILE,
         ;
+
+        private static final BaseType[] TYPES = values();
+
+        public static String getName(ItemStack stack) {
+            return TYPES[stack.getItemDamage() & TYPES.length - 1].getName();
+        }
 
         @Override
         public String getName() {

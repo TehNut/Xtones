@@ -1,5 +1,6 @@
 package tehnut.xtones.compat;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import tehnut.xtones.ConfigHandler;
@@ -7,34 +8,40 @@ import tehnut.xtones.RegistrarXtones;
 import tehnut.xtones.Xtones;
 import tehnut.xtones.block.BlockXtone;
 
+
 // ChiselTones makes a return!
 public class CompatChisel {
 
     public static void sendIMC() {
-        switch (ConfigHandler.chiselMode) {
-            case 0: {
-                for (BlockXtone xtone : RegistrarXtones.BLOCKS) {
-                    NBTTagCompound tag = new NBTTagCompound();
-                    tag.setString("group", Xtones.ID);
-                    tag.setString("block", xtone.getRegistryName().toString());
-                    FMLInterModComms.sendMessage("chisel", "add_variation", tag);
+        if (ConfigHandler.chiselMode == 2)
+            return;
+        if (ConfigHandler.chiselMode == 0)
+            add(variation(RegistrarXtones.BASE, Xtones.ID));
+        for (BlockXtone block : RegistrarXtones.BLOCKS) {
+            if (ConfigHandler.chiselMode == 0) {
+                add(variation(block, Xtones.ID));
+            } else {
+                for (int meta = 0; meta < Xtones.TONES.size(); meta++) {
+                    add(variation(block, meta));
                 }
-                break;
-            }
-            case 1: {
-                for (BlockXtone xtone : RegistrarXtones.BLOCKS)
-                    for (int i = 0; i < BlockXtone.XtoneType.values().length; i++) {
-                        NBTTagCompound tag = new NBTTagCompound();
-                        tag.setString("group", xtone.getName());
-                        tag.setString("block", xtone.getRegistryName().toString());
-                        tag.setInteger("meta", i);
-                        FMLInterModComms.sendMessage("chisel", "add_variation", tag);
-                    }
-                break;
-            }
-            case 2: {
-                break;
             }
         }
+    }
+
+    private static NBTTagCompound variation(Block block, String group) {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("group", group);
+        tag.setString("block", block.getRegistryName().toString());
+        return tag;
+    }
+
+    private static NBTTagCompound variation(Block block, int meta) {
+        NBTTagCompound tag = variation(block, Xtones.TONES.get(meta));
+        tag.setInteger("meta", meta);
+        return tag;
+    }
+
+    private static void add(NBTTagCompound variation) {
+        FMLInterModComms.sendMessage("chisel", "add_variation", variation);
     }
 }
