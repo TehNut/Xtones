@@ -12,7 +12,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import tehnut.xtones.Xtones;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -20,20 +19,10 @@ import java.util.Locale;
 
 public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
 
-    private final String name;
-
     private boolean seeThrough;
 
     public BlockXtone(String name) {
         super(Material.ROCK, XtoneType.class, "variant");
-
-        this.name = name;
-
-        setRegistryName(name);
-        setTranslationKey(Xtones.ID + "." + name);
-        setCreativeTab(Xtones.TAB);
-        setResistance(3.0F);
-        setHardness(3.0F);
     }
 
     @Override
@@ -103,10 +92,6 @@ public class BlockXtone extends BlockEnum<BlockXtone.XtoneType> {
     public BlockXtone setSeeThrough() {
         this.seeThrough = true;
         return this;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public enum XtoneType implements IStringSerializable {

@@ -38,7 +38,7 @@ public class Xtones {
         @Override
         @Nonnull
         public ItemStack createIcon() {
-            return new ItemStack(RegistrarXtones.BASE);
+            return new ItemStack(RegistrarXtones.baseItem);
         }
 
         @Override

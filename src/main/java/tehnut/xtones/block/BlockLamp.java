@@ -19,7 +19,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import tehnut.xtones.Xtones;
 
 import javax.annotation.Nonnull;
 import java.util.EnumMap;
@@ -36,11 +35,7 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
         super(Material.GLASS, EnumFacing.class, "facing");
 
         this.shape = shape;
-
-        setTranslationKey(Xtones.ID + ".lamp." + shape.getName());
-        setCreativeTab(Xtones.TAB);
         setDefaultState(getDefaultState().withProperty(ACTIVE, false));
-        setHardness(0.5F);
     }
 
     @Override

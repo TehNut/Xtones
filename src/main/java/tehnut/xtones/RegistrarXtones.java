@@ -3,7 +3,6 @@ package tehnut.xtones;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -13,9 +12,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 import tehnut.xtones.block.BlockEnum;
 import tehnut.xtones.block.BlockLamp;
 import tehnut.xtones.block.BlockXtone;
@@ -24,75 +21,103 @@ import tehnut.xtones.block.item.ItemBlockXtone;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
 @Mod.EventBusSubscriber(modid = Xtones.ID)
-@GameRegistry.ObjectHolder(Xtones.ID)
 public class RegistrarXtones {
 
-    public static final Block BASE = Blocks.AIR;
-    public static final Block LAMP_FLAT = Blocks.AIR;
-
     private static final List<BlockXtone> BLOCKS = new ArrayList<>(Xtones.TONES.size());
+    private static final List<ItemBlockXtone> ITEMS = new ArrayList<>(Xtones.TONES.size());
+
+    static Block baseBlock, lampBlock;
+    static Item baseItem, lampItem;
 
     public static List<BlockXtone> getBlocks() {
-        return BLOCKS;
+        return Collections.unmodifiableList(BLOCKS);
     }
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
-        event.getRegistry().register(new BlockEnum<>(Material.ROCK, BaseType.class)
-                .setTranslationKey(Xtones.ID + ".base")
-                .setCreativeTab(Xtones.TAB)
-                .setResistance(3.0F)
-                .setHardness(3.0F)
-                .setRegistryName("base")
+        IForgeRegistry<Block> registry = event.getRegistry();
+
+        registry.register(baseBlock = new BlockEnum<>(Material.ROCK, BaseType.class)
+            .setRegistryName(Xtones.ID, "base")
+            .setTranslationKey(Xtones.ID + ".base")
+            .setCreativeTab(Xtones.TAB)
+            .setResistance(3.0F)
+            .setHardness(3.0F)
         );
 
-        event.getRegistry().register(new BlockLamp(BlockLamp.LampShape.FLAT).setRegistryName("lamp_flat"));
+        for (BlockLamp.LampShape shape : BlockLamp.LampShape.values()) {
+            registry.register(lampBlock = new BlockLamp(shape)
+                .setRegistryName(Xtones.ID, "lamp_flat")
+                .setTranslationKey(Xtones.ID + ".lamp." + shape.getName())
+                .setCreativeTab(Xtones.TAB)
+                .setHardness(0.5F)
+            );
+        }
 
         for (String tone : Xtones.TONES) {
             BlockXtone block = new BlockXtone(tone);
-            event.getRegistry().register(block);
+            block.setRegistryName(Xtones.ID, tone);
+            block.setTranslationKey(Xtones.ID + '.' + tone);
+            block.setCreativeTab(Xtones.TAB);
+            block.setResistance(3.0F);
+            block.setHardness(3.0F);
+            registry.register(block);
             BLOCKS.add(block);
         }
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        event.getRegistry().register(new ItemBlock(BASE) {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
+        registry.register(baseItem = new ItemBlock(baseBlock) {
             @Override
             @Nonnull
             public String getTranslationKey(ItemStack stack) {
-                return super.getTranslationKey(stack) + "." + BaseType.getName(stack);
+                return super.getTranslationKey(stack) + '.' + BaseType.getName(stack);
             }
 
             @Override
             public int getMetadata(int damage) {
                 return damage;
             }
-        }.setRegistryName(BASE.getRegistryName()));
+        }.setRegistryName(baseBlock.getRegistryName()));
 
-        event.getRegistry().register(new ItemBlockLamp(LAMP_FLAT).setRegistryName(LAMP_FLAT.getRegistryName()));
+        registry.register(lampItem = new ItemBlockLamp(lampBlock)
+            .setRegistryName(lampBlock.getRegistryName())
+        );
 
-        for (BlockXtone xtone : BLOCKS)
-            event.getRegistry().register(new ItemBlockXtone(xtone).setRegistryName(xtone.getName()));
+        for (BlockXtone block : BLOCKS) {
+            ItemBlockXtone item = new ItemBlockXtone(block);
+            item.setRegistryName(block.getRegistryName());
+            registry.register(item);
+            ITEMS.add(item);
+        }
     }
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
-        for (BlockXtone xtone : BLOCKS) {
-            Item itemBlock = Item.getItemFromBlock(xtone);
-            for (BlockXtone.XtoneType type : xtone.getTypes())
-                ModelLoader.setCustomModelResourceLocation(itemBlock, type.ordinal(), new ModelResourceLocation(xtone.getRegistryName(), "variant=" + type.getName()));
+        for (int tone = 0; tone < Xtones.TONES.size(); tone++) {
+            ItemBlockXtone item = ITEMS.get(tone);
+            for (BlockXtone.XtoneType type : BLOCKS.get(tone).getTypes()) {
+                setCustomModelResourceLocation(item, type.ordinal(), "variant=" + type.getName());
+            }
         }
 
-        for (BaseType type : BaseType.values())
-            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BASE), type.ordinal(), new ModelResourceLocation(BASE.getRegistryName(), "type=" + type.getName()));
+        for (BaseType type : BaseType.values()) {
+            setCustomModelResourceLocation(baseItem, type.ordinal(), "type=" + type.getName());
+        }
 
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(LAMP_FLAT), 0, new ModelResourceLocation(LAMP_FLAT.getRegistryName(), "active=false,facing=up"));
+        setCustomModelResourceLocation(lampItem, 0, "active=false,facing=up");
+    }
+
+    private static void setCustomModelResourceLocation(Item item, int meta, String variant) {
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), variant));
     }
 
     public enum BaseType implements IStringSerializable {
