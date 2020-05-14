@@ -32,9 +32,9 @@ repositories {
 }
 
 dependencies {
-    compile "team.chisel.ctm:CTM:MC1.12-${ctm_version}:api"
-    runtime "team.chisel.ctm:CTM:MC1.12-${ctm_version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.12"
+    compile "team.chisel.ctm:CTM:${ctm_version}:api"
+    runtime "team.chisel.ctm:CTM:${ctm_version}"
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
 }
 
 minecraft {
