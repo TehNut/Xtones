@@ -52,7 +52,7 @@ public class RegistrarXtones {
 
         for (BlockLamp.LampShape shape : BlockLamp.LampShape.values()) {
             registry.register(lampBlock = new BlockLamp(shape)
-                .setRegistryName(Xtones.ID, "lamp_flat")
+                .setRegistryName(Xtones.ID, "lamp_" + shape.getName())
                 .setTranslationKey(Xtones.ID + ".lamp." + shape.getName())
                 .setCreativeTab(Xtones.TAB)
                 .setHardness(0.5F)
