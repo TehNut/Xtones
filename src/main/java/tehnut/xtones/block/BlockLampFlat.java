@@ -1,5 +1,6 @@
 package tehnut.xtones.block;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,28 +14,31 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-import java.util.EnumMap;
-import java.util.Locale;
 import java.util.Random;
 
-public class BlockLamp extends BlockEnum<EnumFacing> {
+public class BlockLampFlat extends BlockEnum<EnumFacing> {
+
+    public static final ImmutableMap<EnumFacing, AxisAlignedBB> SHAPES =
+        Maps.immutableEnumMap(ImmutableMap.<EnumFacing, AxisAlignedBB>builder()
+            .put(EnumFacing.UP, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D))
+            .put(EnumFacing.DOWN, new AxisAlignedBB(0.0D, 0.8125D, 0.0D, 1.0D, 1.0D, 1.0D))
+            .put(EnumFacing.NORTH, new AxisAlignedBB(0.0D, 0.0D, 0.8125D, 1.0D, 1.0D, 1.0D))
+            .put(EnumFacing.EAST, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.1875, 1.0D, 1.0D))
+            .put(EnumFacing.SOUTH, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.1875D))
+            .put(EnumFacing.WEST, new AxisAlignedBB(0.8125D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D))
+            .build());
 
     public static final IProperty<Boolean> ACTIVE = PropertyBool.create("active");
 
-    private final LampShape shape;
-
-    public BlockLamp(LampShape shape) {
+    public BlockLampFlat() {
         super(Material.GLASS, EnumFacing.class, "facing");
 
-        this.shape = shape;
         setDefaultState(getDefaultState().withProperty(ACTIVE, false));
     }
 
@@ -50,7 +54,7 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return shape.getBound(state.getValue(getProperty()));
+        return SHAPES.get(state.getValue(getProperty()));
     }
 
     @Override
@@ -144,42 +148,5 @@ public class BlockLamp extends BlockEnum<EnumFacing> {
     @Override
     protected BlockStateContainer createStateContainer() {
         return new BlockStateContainer.Builder(this).add(getProperty(), ACTIVE).build();
-    }
-
-    public enum LampShape implements IStringSerializable {
-        FLAT(Shapes.FLAT_UP, Shapes.FLAT_DOWN, Shapes.FLAT_NORTH, Shapes.FLAT_EAST, Shapes.FLAT_SOUTH, Shapes.FLAT_WEST),
-        ;
-
-        private final EnumMap<EnumFacing, AxisAlignedBB> boundings;
-
-        LampShape(@Nonnull AxisAlignedBB boundUp, @Nonnull AxisAlignedBB boundDown, @Nonnull AxisAlignedBB boundNorth, @Nonnull AxisAlignedBB boundEast, @Nonnull AxisAlignedBB boundSouth, @Nonnull AxisAlignedBB boundWest) {
-            boundings = Maps.newEnumMap(EnumFacing.class);
-            boundings.put(EnumFacing.UP, boundUp);
-            boundings.put(EnumFacing.DOWN, boundDown);
-            boundings.put(EnumFacing.NORTH, boundNorth);
-            boundings.put(EnumFacing.EAST, boundEast);
-            boundings.put(EnumFacing.SOUTH, boundSouth);
-            boundings.put(EnumFacing.WEST, boundWest);
-        }
-
-        @Nonnull
-        public AxisAlignedBB getBound(EnumFacing facing) {
-            return boundings.get(facing);
-        }
-
-        @Nonnull
-        @Override
-        public String getName() {
-            return name().toLowerCase(Locale.ROOT);
-        }
-    }
-
-    public static class Shapes {
-        public static final AxisAlignedBB FLAT_UP = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D);
-        public static final AxisAlignedBB FLAT_DOWN = new AxisAlignedBB(0.0D, 0.8125D, 0.0D, 1.0D, 1.0D, 1.0D);
-        public static final AxisAlignedBB FLAT_NORTH = new AxisAlignedBB(0.0D, 0.0D, 0.8125D, 1.0D, 1.0D, 1.0D);
-        public static final AxisAlignedBB FLAT_EAST = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.1875, 1.0D, 1.0D);
-        public static final AxisAlignedBB FLAT_SOUTH = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.1875D);
-        public static final AxisAlignedBB FLAT_WEST = new AxisAlignedBB(0.8125D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     }
 }

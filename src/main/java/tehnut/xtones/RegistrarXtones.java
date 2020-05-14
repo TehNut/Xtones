@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import tehnut.xtones.block.BlockEnum;
-import tehnut.xtones.block.BlockLamp;
+import tehnut.xtones.block.BlockLampFlat;
 import tehnut.xtones.block.BlockXtone;
 import tehnut.xtones.block.item.ItemBlockLamp;
 import tehnut.xtones.block.item.ItemBlockXtone;
@@ -50,14 +50,12 @@ public class RegistrarXtones {
             .setHardness(3.0F)
         );
 
-        for (BlockLamp.LampShape shape : BlockLamp.LampShape.values()) {
-            registry.register(lampBlock = new BlockLamp(shape)
-                .setRegistryName(Xtones.ID, "lamp_" + shape.getName())
-                .setTranslationKey(Xtones.ID + ".lamp." + shape.getName())
-                .setCreativeTab(Xtones.TAB)
-                .setHardness(0.5F)
-            );
-        }
+        registry.register(lampBlock = new BlockLampFlat()
+            .setRegistryName(Xtones.ID, "lamp_flat")
+            .setTranslationKey(Xtones.ID + ".lamp.flat")
+            .setCreativeTab(Xtones.TAB)
+            .setHardness(0.5F)
+        );
 
         for (String tone : Xtones.TONES) {
             BlockXtone block = new BlockXtone(tone);
