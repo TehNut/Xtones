@@ -20,7 +20,7 @@ import java.util.List;
 
 public final class XtoneBlockItem extends ItemMultiTexture {
     public XtoneBlockItem(final Block block) {
-        super(block, Blocks.AIR, stack -> String.valueOf(stack.getItemDamage() & 15));
+        super(block, Blocks.AIR, stack -> String.valueOf(stack.getItemDamage() & (Tone.VARIANTS - 1)));
     }
 
     @Override
