@@ -22,6 +22,7 @@ import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.lwjgl.input.Keyboard;
 import tehnut.xtones.Tone;
 import tehnut.xtones.Xtones;
+import tehnut.xtones.config.XtonesConfig;
 import tehnut.xtones.item.XtoneBlockItem;
 import tehnut.xtones.network.XtonesNetwork;
 
@@ -91,7 +92,7 @@ public final class XtonesClient {
     }
 
     private static boolean hasXtoneCycling() {
-        return serverXtoneCycling != null && serverXtoneCycling;
+        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling != null && serverXtoneCycling;
     }
 
     private static boolean isXtone(final ItemStack stack) {
