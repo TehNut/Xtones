@@ -43,16 +43,19 @@ public final class FlatLampBlock extends BlockDirectional {
     }
 
     @Override
+    @Deprecated
     public int getLightValue(final IBlockState state) {
         return state.getValue(ACTIVE) ? 15 : 0;
     }
 
     @Override
+    @Deprecated
     public BlockFaceShape getBlockFaceShape(final IBlockAccess access, final IBlockState state, final BlockPos pos, final EnumFacing facing) {
         return state.getValue(FACING) == facing.getOpposite() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     @Override
+    @Deprecated
     public AxisAlignedBB getBoundingBox(final IBlockState state, final IBlockAccess source, final BlockPos pos) {
         return SHAPES.get(state.getValue(FACING));
     }
@@ -68,6 +71,7 @@ public final class FlatLampBlock extends BlockDirectional {
     }
 
     @Override
+    @Deprecated
     public void neighborChanged(final IBlockState state, final World world, final BlockPos pos, final Block blockIn, final BlockPos fromPos) {
         final boolean active = state.getValue(ACTIVE);
         final boolean powered = world.isBlockPowered(pos);
@@ -100,6 +104,7 @@ public final class FlatLampBlock extends BlockDirectional {
     }
 
     @Override
+    @Deprecated
     public IBlockState getStateFromMeta(final int meta) {
         final boolean active = meta >> 0b11 == 1;
         final EnumFacing facing = EnumFacing.values()[meta & 0b111];
@@ -126,11 +131,13 @@ public final class FlatLampBlock extends BlockDirectional {
     }
 
     @Override
+    @Deprecated
     public boolean isOpaqueCube(final IBlockState state) {
         return false;
     }
 
     @Override
+    @Deprecated
     public boolean isFullCube(final IBlockState state) {
         return false;
     }
