@@ -48,7 +48,6 @@ public final class XtonesClient {
         return SCROLL_MODIFIER.getDisplayName();
     }
 
-
     public static void setServerXtoneCycling(final boolean state) {
         if (serverXtoneCycling != null) {
             throw new IllegalStateException();
