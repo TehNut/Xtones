@@ -107,7 +107,7 @@ public final class Xtones {
 
     @SubscribeEvent
     static void registerBlocks(final RegistryEvent.Register<Block> event) {
-        IForgeRegistry<Block> registry = event.getRegistry();
+        final IForgeRegistry<Block> registry = event.getRegistry();
 
         registry.register(baseBlock = new Block(Material.ROCK)
             .setRegistryName(ID, "base")
@@ -122,7 +122,7 @@ public final class Xtones {
             .setCreativeTab(CREATIVE_TAB)
             .setHardness(0.5F));
 
-        for (Tone tone : Tone.values()) {
+        for (final Tone tone : Tone.values()) {
             final Block block = new XtoneBlock(tone)
                 .setRegistryName(ID, tone.toString())
                 .setTranslationKey(ID + '.' + tone)
@@ -142,7 +142,7 @@ public final class Xtones {
         registry.register(lampItem = new ItemBlock(lampBlock()).setRegistryName(ID, "lamp_flat"));
 
         for (final Tone tone : Tone.values()) {
-            final Item item = new XtoneBlockItem(BLOCKS.get(tone)).setRegistryName(ID, tone.toString());
+            final Item item = new XtoneBlockItem(block(tone)).setRegistryName(ID, tone.toString());
             registry.register(item);
             ITEMS.put(tone, item);
         }
