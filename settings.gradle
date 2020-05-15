@@ -1,1 +1,15 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url 'https://files.minecraftforge.net/maven' }
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if ('net.minecraftforge.gradle.forge' == requested.id.id) {
+                useModule("net.minecraftforge.gradle:ForgeGradle:${requested.version}")
+            }
+        }
+    }
+}
+
 rootProject.name = 'Xtones'

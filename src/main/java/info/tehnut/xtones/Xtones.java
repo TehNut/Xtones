@@ -27,12 +27,11 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Mod(modid = Xtones.ID, name = Xtones.NAME, version = Xtones.VERSION)
+@Mod(modid = Xtones.ID, useMetadata = true)
 @EventBusSubscriber(modid = Xtones.ID)
 public final class Xtones {
     public static final String ID = "xtones";
     public static final String NAME = "Xtones";
-    public static final String VERSION = "@VERSION@";
 
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(ID) {
         @Override

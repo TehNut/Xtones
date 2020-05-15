@@ -1,137 +1,119 @@
-buildscript {
-    repositories {
-        mavenCentral()
-        maven { url = "http://files.minecraftforge.net/maven" }
-        maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
-        classpath 'org.ajoberstar:gradle-git:0.10.1'
-    }
-}
+import java.time.Instant
 
 plugins {
-    id "com.matthewprenger.cursegradle" version "1.0.9"
-    id "maven-publish"
+    id 'java'
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle.forge' version '2.3-SNAPSHOT'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+def build = System.getenv('BUILD_NUMBER') ?: 'CUSTOM'
 
-def build_number = 'CUSTOM'
-
-if (System.getenv('BUILD_NUMBER') != null)
-    build_number = System.getenv('BUILD_NUMBER')
-
-group = package_group
-archivesBaseName = mod_name
-version = "${mc_version}-${mod_version}-${build_number}"
+group = 'info.tehnut'
+version = "1.1.0-$build"
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
-    maven { url "http://maven.tterrag.com/" }
-    maven { url "http://tehnut.info/maven" }
+    maven { url 'https://maven.tterrag.com' }
+    maven { url 'https://tehnut.info/maven' }
 }
 
 dependencies {
-    implementation "org.checkerframework:checker-qual:3.3.0"
-    deobfProvided "team.chisel.ctm:CTM:${ctm_version}:api"
-    runtime "team.chisel.ctm:CTM:${ctm_version}"
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
+    implementation 'org.checkerframework:checker-qual:3.3.0'
+    deobfProvided 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31:api'
+    runtime 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
+    deobfCompile 'mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2'
 }
 
 minecraft {
-    version = "${mc_version}-${forge_version}"
-    runDir = "run"
-
-    replaceIn "Xtones.java"
-    replace "@VERSION@", project.version
-
-    if (project.hasProperty('mappings_version'))
-        mappings = project.mappings_version
+    forgeVersion = '1.12.2-14.23.5.2847'
+    mappings = 'stable_39'
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
-
     from(sourceSets.main.resources.srcDirs) {
-        include '**/*.info'
-        include '**/*.properties'
-
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        include 'mcmod.info', 'version.properties'
+        expand 'version': version
     }
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*.info'
-        exclude '**/*.properties'
+        exclude 'mcmod.info', 'version.properties'
     }
 }
 
-jar {
-    classifier = ''
-    manifest.mainAttributes(
-            "Built-By": System.getProperty('user.name'),
-            "Created-By": "${System.getProperty('java.vm.version')} + (${System.getProperty('java.vm.vendor')})",
-            "Implementation-Title": project.name,
-            "Implementation-Version": project.version,
-            "Built-on": "${mc_version}-${forge_version}"
-    )
+jar.manifest.attributes(
+    'Specification-Title': rootProject.name,
+    'Specification-Vendor': group,
+    'Specification-Version': 1,
+    'Implementation-Title': rootProject.name,
+    'Implementation-Vendor': group,
+    'Implementation-Version': version,
+    'Implementation-Timestamp': Instant.now().toString()
+)
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+    options.fork = true
+    options.verbose = true
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:all'
 }
 
 tasks.build.dependsOn sourceJar
 
 publishing {
     tasks.publish.dependsOn 'build'
+
     publications {
         mavenJava(MavenPublication) {
             artifact jar
             artifact sourceJar
         }
     }
+
     repositories {
-        if (project.hasProperty('maven_repo')) {
-            maven { url maven_repo }
-        } else {
-            mavenLocal()
-        }
+        def mavenRepo = project.findProject('maven_repo')
+        if (mavenRepo) {
+            maven { url mavenRepo }
+        } else mavenLocal()
     }
 }
 
-String getChangelogText() {
-    def changelogFile = new File('changelog.txt')
-    String str = ''
-    String separator = '---'
-    int lineCount = 0
+
+curseforge {
+    apiKey = "${project.findProperty 'curse_key_TehNut'}"
+    project {
+        id = '257573'
+        changelog = changelog()
+        releaseType = 'release'
+        addGameVersion '1.12.1'
+        addGameVersion '1.12.2'
+        addArtifact sourceJar
+    }
+}
+
+private static String changelog() {
+    String changelog = ''
+    int lines = 0
     boolean done = false
-    changelogFile.eachLine {
+    new File('changelog.txt').eachLine {
         if (done || it == null) {
             return
         }
-        if (lineCount < 3) {
-            lineCount++
-            if (it.startsWith(separator)) {
+        if (lines < 3) {
+            lines++
+            if (it.startsWith('---')) {
                 return
             }
         }
-        if (!it.startsWith(separator)) {
-            str += "$it" + (lineCount < 3 ? ':\n\n' : '\n')
+        if (!it.startsWith('---')) {
+            changelog += "$it" + (lines < 3 ? ':\n\n' : '\n')
             return
         }
-        done = true // once we go past the first version block, parse no more
+        done = true
+        return
     }
-    return str
-}
-
-curseforge {
-    if (project.hasProperty('curse_key_TehNut'))
-        apiKey = project.curse_key_TehNut
-
-    project {
-        id = "${curse_id}"
-		changelog = getChangelogText()
-        releaseType = 'release'
-
-        addGameVersion '1.12.1'
-        addGameVersion '1.12.2'
-
-        addArtifact sourceJar
-    }
+    return changelog
 }
