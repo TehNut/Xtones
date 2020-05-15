@@ -4,8 +4,6 @@ tooltip.xtones.cycle=Scroll whilst holding %s to cycle
 
 key.xtones.scroll=Xtone cycling
 
-chat.xtones.scroll.disable=Xtone cycling has been disabled on this server
-
 tile.xtones.base.name=Xtone Tile
 tile.xtones.lamp_flat.name=Flat Lamp
 
