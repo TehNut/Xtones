@@ -11,7 +11,8 @@
   "type": "forge:ore_shaped",
   "key": {
     "B": {
-      "item": "#STONE"
+      "type": "forge:ore_dict",
+      "ore": "stone"
     },
     "S": {
       "item": "minecraft:stone_slab",

@@ -1,13 +1,17 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "textures": {
-      "up": "xtones:blocks/lamp_flat/lamp_up_off"
-    },
-    "model": "xtones:lamp_flat",
-    "transform": "forge:default-block"
+    "model": "xtones:lamp_flat"
   },
   "variants": {
+    "active": {
+      "true": {
+        "textures": { "top": "xtones:blocks/lamp_flat/top_on" }
+      },
+      "false": {
+        "textures": { "top": "xtones:blocks/lamp_flat/top_off" }
+      }
+    },
     "facing": {
       "north": { "x": 90 },
       "east": { "x": 90, "y": 90 },
@@ -15,14 +19,6 @@
       "west": { "x": 90, "y": 270 },
       "up": { },
       "down": { "x": 180 }
-    },
-    "active": {
-      "true": {
-        "textures": {
-          "up": "xtones:blocks/lamp_flat/lamp_up_on"
-        }
-      },
-      "false": { }
     }
   }
 }

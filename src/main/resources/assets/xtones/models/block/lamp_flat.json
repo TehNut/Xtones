@@ -1,23 +1,22 @@
 {
   "__comment": "Copyright © Chloe Dawn 2020",
+  "parent": "minecraft:block/block",
   "textures": {
-    "particle": "xtones:blocks/lamp_flat/lamp_up_off",
-    "down": "xtones:blocks/lamp_flat/lamp_down",
-    "up": "#up",
-    "side": "xtones:blocks/lamp_flat/lamp_side"
+    "particle": "#top",
+    "bottom": "xtones:blocks/lamp_flat/bottom",
+    "side": "xtones:blocks/lamp_flat/side"
   },
   "elements": [
     {
-      "__comment": "lamp",
       "from": [ 0, 0, 0 ],
       "to": [ 16, 3, 16 ],
       "faces": {
-        "down": { "uv": [ 0, 0, 16, 16 ], "texture": "#down", "cullface": "down" },
-        "up": { "uv": [ 0, 0, 16, 16 ], "texture": "#up", "cullface": "up" },
-        "north": { "uv": [ 0, 13, 16, 16 ], "texture": "#side", "cullface": "north" },
-        "south": { "uv": [ 0, 13, 16, 16 ], "texture": "#side", "cullface": "south" },
-        "west": { "uv": [ 0, 13, 16, 16 ], "texture": "#side", "cullface": "west" },
-        "east": { "uv": [ 0, 13, 16, 16 ], "texture": "#side", "cullface": "east" }
+        "down": { "texture": "#bottom", "cullface": "down" },
+        "up": { "texture": "#top" },
+        "north": { "texture": "#side", "cullface": "north" },
+        "south": { "texture": "#side", "cullface": "south" },
+        "west": { "texture": "#side", "cullface": "west" },
+        "east": { "texture": "#side", "cullface": "east" }
       }
     }
   ]

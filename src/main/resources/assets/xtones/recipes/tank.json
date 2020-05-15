@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "type": "xtones:recipes_enabled"
+    }
+  ],
+  "result": {
+    "item": "xtones:tank",
+    "data": 0,
+    "count": 8
+  },
+  "pattern": [
+    "BBB",
+    "BCB",
+    "BBB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "xtones:base"
+    },
+    "C": {
+      "item": "minecraft:dye",
+      "data": 8
+    }
+  }
+}

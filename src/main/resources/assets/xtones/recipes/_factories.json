@@ -1,5 +1,5 @@
 {
   "conditions": {
-    "add_crafting": "tehnut.xtones.crafting.XtoneCraftingCondition"
+    "recipes_enabled": "info.tehnut.xtones.crafting.XtoneCraftingCondition"
   }
 }

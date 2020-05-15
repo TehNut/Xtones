@@ -14,10 +14,12 @@
       "data": 0
     },
     "D": {
-      "item": "#DUSTGLOWSTONE"
+      "type": "forge:ore_dict",
+      "ore": "dustGlowstone"
     },
     "I": {
-      "item": "#INGOTIRON"
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
     }
   }
 }
