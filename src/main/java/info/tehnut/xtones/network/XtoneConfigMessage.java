@@ -14,7 +14,7 @@ public final class XtoneConfigMessage implements IMessage {
         this.xtoneCycling = xtoneCycling;
     }
 
-    public boolean hasXtoneCycling() {
+    boolean hasXtoneCycling() {
         return this.xtoneCycling;
     }
 

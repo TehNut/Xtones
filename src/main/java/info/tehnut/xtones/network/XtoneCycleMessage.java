@@ -23,12 +23,12 @@ public final class XtoneCycleMessage implements IMessage {
         this.offset = scroll >= 0 ? NEXT : PREV;
     }
 
-    public EnumHand getHand() {
+    EnumHand getHand() {
         Preconditions.checkState(this.hand != null);
         return this.hand;
     }
 
-    public int getOffset() {
+    int getOffset() {
         Preconditions.checkState(this.offset != ABSENT);
         return this.offset;
     }
