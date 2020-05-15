@@ -1,5 +1,7 @@
 package info.tehnut.xtones.config;
 
+import info.tehnut.xtones.network.XtonesNetwork;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
 import net.minecraftforge.common.config.Config.RangeInt;
@@ -8,6 +10,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import info.tehnut.xtones.Xtones;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 @Config(modid = Xtones.ID)
 @EventBusSubscriber(modid = Xtones.ID)
@@ -46,9 +49,14 @@ public final class XtonesConfig {
     }
 
     @SubscribeEvent
-    static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
+    static void configChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
         if (Xtones.ID.equals(event.getModID())) {
             ConfigManager.sync(Xtones.ID, Config.Type.INSTANCE);
         }
+    }
+
+    @SubscribeEvent
+    static void playerLoggedIn(final PlayerEvent.PlayerLoggedInEvent event) {
+        XtonesNetwork.syncConfig((EntityPlayerMP) event.player);
     }
 }
