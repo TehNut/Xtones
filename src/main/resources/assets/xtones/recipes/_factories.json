@@ -1,5 +1,5 @@
 {
   "conditions": {
-    "add_crafting": "tehnut.xtones.ConditionAddCrafting"
+    "add_crafting": "tehnut.xtones.crafting.XtoneCraftingCondition"
   }
 }

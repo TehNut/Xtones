@@ -6,22 +6,22 @@
   },
   "variants": {
     "variant": {
-      "one":      { "textures": { "all": "xtones:blocks/sync/0"  }},
-      "two":      { "textures": { "all": "xtones:blocks/sync/1"  }},
-      "three":    { "textures": { "all": "xtones:blocks/sync/2"  }},
-      "four":     { "textures": { "all": "xtones:blocks/sync/3"  }},
-      "five":     { "textures": { "all": "xtones:blocks/sync/4"  }},
-      "six":      { "textures": { "all": "xtones:blocks/sync/5"  }},
-      "seven":    { "textures": { "all": "xtones:blocks/sync/6"  }},
-      "eight":    { "textures": { "all": "xtones:blocks/sync/7"  }},
-      "nine":     { "textures": { "all": "xtones:blocks/sync/8"  }},
-      "ten":      { "textures": { "all": "xtones:blocks/sync/9" }},
-      "eleven":   { "textures": { "all": "xtones:blocks/sync/10" }},
-      "twelve":   { "textures": { "all": "xtones:blocks/sync/11" }},
-      "thirteen": { "textures": { "all": "xtones:blocks/sync/12" }},
-      "fourteen": { "textures": { "all": "xtones:blocks/sync/13" }},
-      "fifteen":  { "textures": { "all": "xtones:blocks/sync/14" }},
-      "sixteen":  { "textures": { "all": "xtones:blocks/sync/15" }}
+      "0": { "textures": { "all": "xtones:blocks/sync/0" } },
+      "1": { "textures": { "all": "xtones:blocks/sync/1" } },
+      "2": { "textures": { "all": "xtones:blocks/sync/2" } },
+      "3": { "textures": { "all": "xtones:blocks/sync/3" } },
+      "4": { "textures": { "all": "xtones:blocks/sync/4" } },
+      "5": { "textures": { "all": "xtones:blocks/sync/5" } },
+      "6": { "textures": { "all": "xtones:blocks/sync/6" } },
+      "7": { "textures": { "all": "xtones:blocks/sync/7" } },
+      "8": { "textures": { "all": "xtones:blocks/sync/8" } },
+      "9": { "textures": { "all": "xtones:blocks/sync/9" } },
+      "10": { "textures": { "all": "xtones:blocks/sync/10" } },
+      "11": { "textures": { "all": "xtones:blocks/sync/11" } },
+      "12": { "textures": { "all": "xtones:blocks/sync/12" } },
+      "13": { "textures": { "all": "xtones:blocks/sync/13" } },
+      "14": { "textures": { "all": "xtones:blocks/sync/14" } },
+      "15": { "textures": { "all": "xtones:blocks/sync/15" } }
     }
   }
 }

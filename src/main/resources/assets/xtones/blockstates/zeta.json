@@ -6,22 +6,22 @@
   },
   "variants": {
     "variant": {
-      "one":      { "textures": { "all": "xtones:blocks/zeta/0"  }},
-      "two":      { "textures": { "all": "xtones:blocks/zeta/1"  }},
-      "three":    { "textures": { "all": "xtones:blocks/zeta/2"  }},
-      "four":     { "textures": { "all": "xtones:blocks/zeta/3"  }},
-      "five":     { "textures": { "all": "xtones:blocks/zeta/4"  }},
-      "six":      { "textures": { "all": "xtones:blocks/zeta/5"  }},
-      "seven":    { "textures": { "all": "xtones:blocks/zeta/6"  }},
-      "eight":    { "textures": { "all": "xtones:blocks/zeta/7"  }},
-      "nine":     { "textures": { "all": "xtones:blocks/zeta/8"  }},
-      "ten":      { "textures": { "all": "xtones:blocks/zeta/9" }},
-      "eleven":   { "textures": { "all": "xtones:blocks/zeta/10" }},
-      "twelve":   { "textures": { "all": "xtones:blocks/zeta/11" }},
-      "thirteen": { "textures": { "all": "xtones:blocks/zeta/12" }},
-      "fourteen": { "textures": { "all": "xtones:blocks/zeta/13" }},
-      "fifteen":  { "textures": { "all": "xtones:blocks/zeta/14" }},
-      "sixteen":  { "textures": { "all": "xtones:blocks/zeta/15" }}
+      "0": { "textures": { "all": "xtones:blocks/zeta/0" } },
+      "1": { "textures": { "all": "xtones:blocks/zeta/1" } },
+      "2": { "textures": { "all": "xtones:blocks/zeta/2" } },
+      "3": { "textures": { "all": "xtones:blocks/zeta/3" } },
+      "4": { "textures": { "all": "xtones:blocks/zeta/4" } },
+      "5": { "textures": { "all": "xtones:blocks/zeta/5" } },
+      "6": { "textures": { "all": "xtones:blocks/zeta/6" } },
+      "7": { "textures": { "all": "xtones:blocks/zeta/7" } },
+      "8": { "textures": { "all": "xtones:blocks/zeta/8" } },
+      "9": { "textures": { "all": "xtones:blocks/zeta/9" } },
+      "10": { "textures": { "all": "xtones:blocks/zeta/10" } },
+      "11": { "textures": { "all": "xtones:blocks/zeta/11" } },
+      "12": { "textures": { "all": "xtones:blocks/zeta/12" } },
+      "13": { "textures": { "all": "xtones:blocks/zeta/13" } },
+      "14": { "textures": { "all": "xtones:blocks/zeta/14" } },
+      "15": { "textures": { "all": "xtones:blocks/zeta/15" } }
     }
   }
 }

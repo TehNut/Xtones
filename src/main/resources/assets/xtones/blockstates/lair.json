@@ -6,22 +6,22 @@
   },
   "variants": {
     "variant": {
-      "one":      { "textures": { "all": "xtones:blocks/lair/0"  }},
-      "two":      { "textures": { "all": "xtones:blocks/lair/1"  }},
-      "three":    { "textures": { "all": "xtones:blocks/lair/2"  }},
-      "four":     { "textures": { "all": "xtones:blocks/lair/3"  }},
-      "five":     { "textures": { "all": "xtones:blocks/lair/4"  }},
-      "six":      { "textures": { "all": "xtones:blocks/lair/5"  }},
-      "seven":    { "textures": { "all": "xtones:blocks/lair/6"  }},
-      "eight":    { "textures": { "all": "xtones:blocks/lair/7"  }},
-      "nine":     { "textures": { "all": "xtones:blocks/lair/8"  }},
-      "ten":      { "textures": { "all": "xtones:blocks/lair/9" }},
-      "eleven":   { "textures": { "all": "xtones:blocks/lair/10" }},
-      "twelve":   { "textures": { "all": "xtones:blocks/lair/11" }},
-      "thirteen": { "textures": { "all": "xtones:blocks/lair/12" }},
-      "fourteen": { "textures": { "all": "xtones:blocks/lair/13" }},
-      "fifteen":  { "textures": { "all": "xtones:blocks/lair/14" }},
-      "sixteen":  { "textures": { "all": "xtones:blocks/lair/15" }}
+      "0": { "textures": { "all": "xtones:blocks/lair/0" } },
+      "1": { "textures": { "all": "xtones:blocks/lair/1" } },
+      "2": { "textures": { "all": "xtones:blocks/lair/2" } },
+      "3": { "textures": { "all": "xtones:blocks/lair/3" } },
+      "4": { "textures": { "all": "xtones:blocks/lair/4" } },
+      "5": { "textures": { "all": "xtones:blocks/lair/5" } },
+      "6": { "textures": { "all": "xtones:blocks/lair/6" } },
+      "7": { "textures": { "all": "xtones:blocks/lair/7" } },
+      "8": { "textures": { "all": "xtones:blocks/lair/8" } },
+      "9": { "textures": { "all": "xtones:blocks/lair/9" } },
+      "10": { "textures": { "all": "xtones:blocks/lair/10" } },
+      "11": { "textures": { "all": "xtones:blocks/lair/11" } },
+      "12": { "textures": { "all": "xtones:blocks/lair/12" } },
+      "13": { "textures": { "all": "xtones:blocks/lair/13" } },
+      "14": { "textures": { "all": "xtones:blocks/lair/14" } },
+      "15": { "textures": { "all": "xtones:blocks/lair/15" } }
     }
   }
 }

@@ -32,7 +32,8 @@ repositories {
 }
 
 dependencies {
-    compile "team.chisel.ctm:CTM:${ctm_version}:api"
+    implementation "org.checkerframework:checker-qual:3.3.0"
+    deobfProvided "team.chisel.ctm:CTM:${ctm_version}:api"
     runtime "team.chisel.ctm:CTM:${ctm_version}"
     deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}"
 }

@@ -6,22 +6,22 @@
   },
   "variants": {
     "variant": {
-      "one":      { "textures": { "all": "xtones:blocks/fort/0"  }},
-      "two":      { "textures": { "all": "xtones:blocks/fort/1"  }},
-      "three":    { "textures": { "all": "xtones:blocks/fort/2"  }},
-      "four":     { "textures": { "all": "xtones:blocks/fort/3"  }},
-      "five":     { "textures": { "all": "xtones:blocks/fort/4"  }},
-      "six":      { "textures": { "all": "xtones:blocks/fort/5"  }},
-      "seven":    { "textures": { "all": "xtones:blocks/fort/6"  }},
-      "eight":    { "textures": { "all": "xtones:blocks/fort/7"  }},
-      "nine":     { "textures": { "all": "xtones:blocks/fort/8"  }},
-      "ten":      { "textures": { "all": "xtones:blocks/fort/9" }},
-      "eleven":   { "textures": { "all": "xtones:blocks/fort/10" }},
-      "twelve":   { "textures": { "all": "xtones:blocks/fort/11" }},
-      "thirteen": { "textures": { "all": "xtones:blocks/fort/12" }},
-      "fourteen": { "textures": { "all": "xtones:blocks/fort/13" }},
-      "fifteen":  { "textures": { "all": "xtones:blocks/fort/14" }},
-      "sixteen":  { "textures": { "all": "xtones:blocks/fort/15" }}
+      "0": { "textures": { "all": "xtones:blocks/fort/0" } },
+      "1": { "textures": { "all": "xtones:blocks/fort/1" } },
+      "2": { "textures": { "all": "xtones:blocks/fort/2" } },
+      "3": { "textures": { "all": "xtones:blocks/fort/3" } },
+      "4": { "textures": { "all": "xtones:blocks/fort/4" } },
+      "5": { "textures": { "all": "xtones:blocks/fort/5" } },
+      "6": { "textures": { "all": "xtones:blocks/fort/6" } },
+      "7": { "textures": { "all": "xtones:blocks/fort/7" } },
+      "8": { "textures": { "all": "xtones:blocks/fort/8" } },
+      "9": { "textures": { "all": "xtones:blocks/fort/9" } },
+      "10": { "textures": { "all": "xtones:blocks/fort/10" } },
+      "11": { "textures": { "all": "xtones:blocks/fort/11" } },
+      "12": { "textures": { "all": "xtones:blocks/fort/12" } },
+      "13": { "textures": { "all": "xtones:blocks/fort/13" } },
+      "14": { "textures": { "all": "xtones:blocks/fort/14" } },
+      "15": { "textures": { "all": "xtones:blocks/fort/15" } }
     }
   }
 }

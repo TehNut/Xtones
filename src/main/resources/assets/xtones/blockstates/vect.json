@@ -6,22 +6,22 @@
   },
   "variants": {
     "variant": {
-      "one":      { "textures": { "all": "xtones:blocks/vect/0"  }},
-      "two":      { "textures": { "all": "xtones:blocks/vect/1"  }},
-      "three":    { "textures": { "all": "xtones:blocks/vect/2"  }},
-      "four":     { "textures": { "all": "xtones:blocks/vect/3"  }},
-      "five":     { "textures": { "all": "xtones:blocks/vect/4"  }},
-      "six":      { "textures": { "all": "xtones:blocks/vect/5"  }},
-      "seven":    { "textures": { "all": "xtones:blocks/vect/6"  }},
-      "eight":    { "textures": { "all": "xtones:blocks/vect/7"  }},
-      "nine":     { "textures": { "all": "xtones:blocks/vect/8"  }},
-      "ten":      { "textures": { "all": "xtones:blocks/vect/9" }},
-      "eleven":   { "textures": { "all": "xtones:blocks/vect/10" }},
-      "twelve":   { "textures": { "all": "xtones:blocks/vect/11" }},
-      "thirteen": { "textures": { "all": "xtones:blocks/vect/12" }},
-      "fourteen": { "textures": { "all": "xtones:blocks/vect/13" }},
-      "fifteen":  { "textures": { "all": "xtones:blocks/vect/14" }},
-      "sixteen":  { "textures": { "all": "xtones:blocks/vect/15" }}
+      "0": { "textures": { "all": "xtones:blocks/vect/0" } },
+      "1": { "textures": { "all": "xtones:blocks/vect/1" } },
+      "2": { "textures": { "all": "xtones:blocks/vect/2" } },
+      "3": { "textures": { "all": "xtones:blocks/vect/3" } },
+      "4": { "textures": { "all": "xtones:blocks/vect/4" } },
+      "5": { "textures": { "all": "xtones:blocks/vect/5" } },
+      "6": { "textures": { "all": "xtones:blocks/vect/6" } },
+      "7": { "textures": { "all": "xtones:blocks/vect/7" } },
+      "8": { "textures": { "all": "xtones:blocks/vect/8" } },
+      "9": { "textures": { "all": "xtones:blocks/vect/9" } },
+      "10": { "textures": { "all": "xtones:blocks/vect/10" } },
+      "11": { "textures": { "all": "xtones:blocks/vect/11" } },
+      "12": { "textures": { "all": "xtones:blocks/vect/12" } },
+      "13": { "textures": { "all": "xtones:blocks/vect/13" } },
+      "14": { "textures": { "all": "xtones:blocks/vect/14" } },
+      "15": { "textures": { "all": "xtones:blocks/vect/15" } }
     }
   }
 }
