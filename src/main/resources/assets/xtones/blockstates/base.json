@@ -2,7 +2,7 @@
   "forge_marker": 1,
   "variants": {
     "normal": {
-      "model": "cube_all",
+      "model": "minecraft:cube_all",
       "textures": { "all": "xtones:blocks/stone_tile" }
     }
   }
