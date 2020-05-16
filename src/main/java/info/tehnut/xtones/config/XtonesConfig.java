@@ -1,5 +1,6 @@
 package info.tehnut.xtones.config;
 
+import info.tehnut.xtones.Xtones;
 import info.tehnut.xtones.network.XtonesNetwork;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.config.Config;
@@ -9,7 +10,6 @@ import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import info.tehnut.xtones.Xtones;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 @Config(modid = Xtones.ID)
@@ -36,6 +36,9 @@ public final class XtonesConfig {
         "Mainly for use with Chisel installed and chiselMode being set to 1."
     })
     public static boolean disableScrollCycling = false;
+
+    @Comment("Enables the search bar on the Xtones creative tab")
+    public static boolean searchableCreativeTab = true;
 
     private XtonesConfig() {
     }

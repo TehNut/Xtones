@@ -1,12 +1,17 @@
 package info.tehnut.xtones;
 
 import com.google.common.base.Preconditions;
+import info.tehnut.xtones.block.FlatLampBlock;
+import info.tehnut.xtones.block.XtoneBlock;
+import info.tehnut.xtones.item.XtoneBlockItem;
+import info.tehnut.xtones.item.XtonesCreativeTab;
+import info.tehnut.xtones.network.XtonesNetwork;
+import info.tehnut.xtones.support.ChiselSupport;
+import info.tehnut.xtones.support.ChiselsAndBitsSupport;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -16,12 +21,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-import info.tehnut.xtones.block.FlatLampBlock;
-import info.tehnut.xtones.block.XtoneBlock;
-import info.tehnut.xtones.item.XtoneBlockItem;
-import info.tehnut.xtones.network.XtonesNetwork;
-import info.tehnut.xtones.support.ChiselSupport;
-import info.tehnut.xtones.support.ChiselsAndBitsSupport;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -32,18 +31,6 @@ import java.util.stream.Stream;
 public final class Xtones {
     public static final String ID = "xtones";
     public static final String NAME = "Xtones";
-
-    private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(ID) {
-        @Override
-        public ItemStack createIcon() {
-            return new ItemStack(baseItem());
-        }
-
-        @Override
-        public boolean hasSearchBar() {
-            return true;
-        }
-    }.setBackgroundImageName("item_search.png");
 
     private static final Map<Tone, Block> BLOCKS = new EnumMap<>(Tone.class);
     private static final Map<Tone, Item> ITEMS = new EnumMap<>(Tone.class);
@@ -114,21 +101,21 @@ public final class Xtones {
         registry.register(baseBlock = new Block(Material.ROCK)
             .setRegistryName(ID, BASE)
             .setTranslationKey(ID + '.' + LAMP)
-            .setCreativeTab(CREATIVE_TAB)
+            .setCreativeTab(XtonesCreativeTab.instance())
             .setResistance(3.0F)
             .setHardness(3.0F));
 
         registry.register(lampBlock = new FlatLampBlock()
             .setRegistryName(ID, LAMP)
             .setTranslationKey(ID + '.' + LAMP)
-            .setCreativeTab(CREATIVE_TAB)
+            .setCreativeTab(XtonesCreativeTab.instance())
             .setHardness(0.5F));
 
         for (final Tone tone : Tone.values()) {
             final Block block = new XtoneBlock(tone)
                 .setRegistryName(ID, tone.toString())
                 .setTranslationKey(ID + '.' + tone)
-                .setCreativeTab(CREATIVE_TAB)
+                .setCreativeTab(XtonesCreativeTab.instance())
                 .setResistance(3.0F)
                 .setHardness(3.0F);
             registry.register(block);
@@ -149,4 +136,5 @@ public final class Xtones {
             ITEMS.put(tone, item);
         }
     }
+
 }
