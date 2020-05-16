@@ -21,7 +21,7 @@ public final class XtonesNetwork {
 
     public static void init() {
         WRAPPER.registerMessage(XtoneCycleHandler.INSTANCE, XtoneCycleMessage.class, 0, Side.SERVER);
-        WRAPPER.registerMessage(XtoneConfigHandler.INSTANCE, XtoneConfigMessage.class, 1, Side.CLIENT);
+        WRAPPER.registerMessage(ConfigSyncHandler.INSTANCE, ConfigSyncMessage.class, 1, Side.CLIENT);
     }
 
     @SideOnly(Side.CLIENT)
@@ -30,6 +30,6 @@ public final class XtonesNetwork {
     }
 
     public static void syncConfig(final EntityPlayerMP player) {
-        WRAPPER.sendTo(new XtoneConfigMessage(XtonesConfig.hasXtoneCycling()), player);
+        WRAPPER.sendTo(new ConfigSyncMessage(XtonesConfig.hasXtoneCycling()), player);
     }
 }

@@ -3,14 +3,14 @@ package info.tehnut.xtones.network;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-public final class XtoneConfigMessage implements IMessage {
+public final class ConfigSyncMessage implements IMessage {
     private boolean xtoneCycling = false;
 
     @Deprecated
-    public XtoneConfigMessage() {
+    public ConfigSyncMessage() {
     }
 
-    XtoneConfigMessage(final boolean xtoneCycling) {
+    ConfigSyncMessage(final boolean xtoneCycling) {
         this.xtoneCycling = xtoneCycling;
     }
 
