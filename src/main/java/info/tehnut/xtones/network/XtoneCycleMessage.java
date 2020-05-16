@@ -7,6 +7,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 public final class XtoneCycleMessage implements IMessage {
+    private static final EnumHand[] HANDS  = EnumHand.values();
+
     private static final int ABSENT = 0;
     private static final int NEXT = 1;
     private static final int PREV = -1;
@@ -36,7 +38,7 @@ public final class XtoneCycleMessage implements IMessage {
     @Override
     public void fromBytes(final ByteBuf buf) {
         this.offset = buf.readBoolean() ? NEXT : PREV;
-        this.hand = EnumHand.values()[buf.readByte()];
+        this.hand = HANDS[buf.readByte()];
     }
 
     @Override
