@@ -23,12 +23,12 @@ import java.util.Random;
 public final class FlatLampBlock extends BlockDirectional {
     private static final ImmutableMap<EnumFacing, AxisAlignedBB> SHAPES =
         Maps.immutableEnumMap(ImmutableMap.<EnumFacing, AxisAlignedBB>builder()
-            .put(EnumFacing.UP, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.1875D, 1.0D))
-            .put(EnumFacing.DOWN, new AxisAlignedBB(0.0D, 0.8125D, 0.0D, 1.0D, 1.0D, 1.0D))
-            .put(EnumFacing.NORTH, new AxisAlignedBB(0.0D, 0.0D, 0.8125D, 1.0D, 1.0D, 1.0D))
-            .put(EnumFacing.EAST, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.1875, 1.0D, 1.0D))
-            .put(EnumFacing.SOUTH, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.1875D))
-            .put(EnumFacing.WEST, new AxisAlignedBB(0.8125D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D))
+            .put(EnumFacing.UP, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.1875, 1.0))
+            .put(EnumFacing.DOWN, new AxisAlignedBB(0.0, 0.8125, 0.0, 1.0, 1.0, 1.0))
+            .put(EnumFacing.NORTH, new AxisAlignedBB(0.0, 0.0, 0.8125, 1.0, 1.0, 1.0))
+            .put(EnumFacing.EAST, new AxisAlignedBB(0.0, 0.0, 0.0, 0.1875, 1.0, 1.0))
+            .put(EnumFacing.SOUTH, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.1875))
+            .put(EnumFacing.WEST, new AxisAlignedBB(0.8125, 0.0, 0.0, 1.0, 1.0, 1.0))
             .build());
 
     private static final IProperty<Boolean> ACTIVE = PropertyBool.create("active");
