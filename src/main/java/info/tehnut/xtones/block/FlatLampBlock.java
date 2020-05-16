@@ -17,6 +17,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants.BlockFlags;
 
 import java.util.Random;
 
@@ -64,7 +65,7 @@ public final class FlatLampBlock extends BlockDirectional {
         if (!world.isRemote) {
             final boolean powered = world.isBlockPowered(pos);
             if (state.getValue(ACTIVE) != powered) {
-                world.setBlockState(pos, state.withProperty(ACTIVE, powered), 2);
+                world.setBlockState(pos, state.withProperty(ACTIVE, powered), BlockFlags.SEND_TO_CLIENTS);
             }
         }
     }
@@ -75,9 +76,9 @@ public final class FlatLampBlock extends BlockDirectional {
         final boolean active = state.getValue(ACTIVE);
         final boolean powered = world.isBlockPowered(pos);
         if (active && !powered) {
-            world.scheduleUpdate(pos, this, 4);
+            world.scheduleUpdate(pos, this, BlockFlags.NO_RERENDER);
         } else if (!active && powered) {
-            world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
+            world.setBlockState(pos, state.withProperty(ACTIVE, true), BlockFlags.SEND_TO_CLIENTS);
         }
         final EnumFacing facing = state.getValue(FACING);
         if (!world.isSideSolid(pos.offset(facing.getOpposite()), facing, false)) {
@@ -120,7 +121,7 @@ public final class FlatLampBlock extends BlockDirectional {
     @Override
     public void updateTick(final World world, final BlockPos pos, final IBlockState state, final Random rand) {
         if (!world.isRemote && state.getValue(ACTIVE) && !world.isBlockPowered(pos)) {
-            world.setBlockState(pos, state.withProperty(ACTIVE, false), 2);
+            world.setBlockState(pos, state.withProperty(ACTIVE, false), BlockFlags.SEND_TO_CLIENTS);
         }
     }
 
