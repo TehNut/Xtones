@@ -31,7 +31,7 @@ final class XtoneCycleHandler implements IMessageHandler<XtoneCycleMessage, IMes
             LOGGER.warn("{} ({}) tried to cycle when cycling is disabled", profile.getName(), profile.getId());
             return;
         }
-        if (cycle.getHand() == EnumHand.OFF_HAND && player.inventory.currentItem == cycle.getExpectedSlot()) {
+        if (cycle.getHand() == EnumHand.OFF_HAND || player.inventory.currentItem == cycle.getExpectedSlot()) {
             final ItemStack held = player.getHeldItem(cycle.getHand());
             if (held.getItem() instanceof XtoneBlockItem) {
                 held.setItemDamage(held.getItemDamage() + cycle.getOffset() & (Tone.VARIANTS - 1));
