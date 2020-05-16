@@ -40,6 +40,14 @@ public final class XtonesConfig {
     @Comment("Enables the search bar on the Xtones creative tab")
     public static boolean searchableCreativeTab = true;
 
+    @Comment({
+        "Visibility of the cycling tooltip on Xtone items",
+        "   visible - The tooltip will always be visible",
+        "   shift - The tooltip will only be visible when shift is held",
+        "   hidden - The tooltip will not be visible"
+    })
+    public static TooltipVisibility cyclingTooltip = TooltipVisibility.visible;
+
     private XtonesConfig() {
     }
 

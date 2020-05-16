@@ -35,7 +35,7 @@ public final class XtoneBlockItem extends ItemMultiTexture {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack stack, final @Nullable World world, final List<String> tooltip, final ITooltipFlag flag) {
-        if (XtonesConfig.hasXtoneCycling()) {
+        if (XtonesConfig.hasXtoneCycling() && XtonesConfig.cyclingTooltip.isVisible()) {
             tooltip.add(I18n.format("tooltip.xtones.cycle", XtonesClient.getScrollModifierName()));
         }
     }
