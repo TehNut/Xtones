@@ -33,13 +33,13 @@ final class XtoneCycleHandler implements IMessageHandler<XtoneCycleMessage, IMes
         }
         if ((cycle.getHand() == EnumHand.OFF_HAND ? -1 : player.inventory.currentItem) == cycle.getExpectedSlot()) {
             final ItemStack held = player.getHeldItem(cycle.getHand());
-            if (held.getItem() instanceof XtoneBlockItem) {
-                held.setItemDamage(held.getItemDamage() + cycle.getOffset() & (Tone.VARIANTS - 1));
-            } else {
+            if (!(held.getItem() instanceof XtoneBlockItem)) {
                 final GameProfile profile = player.getGameProfile();
                 final String item = Objects.toString(held.getItem().getRegistryName(), "an unregistered item");
                 LOGGER.warn("{} ({}) tried to cycle {}", profile.getName(), profile.getId(), item);
+                return;
             }
+            held.setItemDamage(held.getItemDamage() + cycle.getOffset() & (Tone.VARIANTS - 1));
         }
     }
 
