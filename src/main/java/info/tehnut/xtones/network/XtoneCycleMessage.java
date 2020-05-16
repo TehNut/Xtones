@@ -33,13 +33,15 @@ public final class XtoneCycleMessage implements IMessage {
     XtoneCycleMessage(final EntityPlayerSP player, final EnumHand hand, final int scroll) {
         this.hand = hand;
         this.offset = scroll >= 0 ? NEXT : PREV;
-        this.slot = this.hand == EnumHand.MAIN_HAND
-            ? this.checkSlot(player.inventory.currentItem)
-            : OFF_HAND_SLOT;
+        this.slot = isMain(hand) ? checkSlot(hand, player.inventory.currentItem) : OFF_HAND_SLOT;
     }
 
-    private int checkSlot(final int slot) {
-        final boolean hotbar = this.hand == EnumHand.MAIN_HAND && InventoryPlayer.isHotbar(slot);
+    private static boolean isMain(final EnumHand hand) {
+        return hand == EnumHand.MAIN_HAND;
+    }
+
+    private static int checkSlot(final EnumHand hand, final int slot) {
+        final boolean hotbar = isMain(hand) && InventoryPlayer.isHotbar(slot);
         Preconditions.checkArgument(hotbar || slot == OFF_HAND_SLOT, slot);
         return slot;
     }
@@ -64,7 +66,7 @@ public final class XtoneCycleMessage implements IMessage {
         Preconditions.checkArgument(buf.isReadable(SIZE_BYTES), buf);
         this.offset = buf.readBoolean() ? NEXT : PREV;
         this.hand = HANDS[buf.readByte()];
-        this.slot = this.checkSlot(buf.readShort());
+        this.slot = checkSlot(this.hand, buf.readShort());
     }
 
     @Override
