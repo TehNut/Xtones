@@ -8,8 +8,11 @@ import info.tehnut.xtones.config.ChiselMode;
 import info.tehnut.xtones.config.XtonesConfig;
 import info.tehnut.xtones.Xtones;
 
+import java.util.Objects;
+
 public final class ChiselSupport {
-    private static final String CHISEL = "chisel";
+    public static final String CHISEL = "chisel";
+
     private static final String ADD_VARIATION = "add_variation";
 
     private static final String GROUP = "group";
@@ -34,9 +37,10 @@ public final class ChiselSupport {
     }
 
     private static NBTTagCompound variation(final Block block, final String group) {
+        final String name = Objects.requireNonNull(block.getRegistryName()).toString();
         final NBTTagCompound tag = new NBTTagCompound();
         tag.setString(GROUP, group);
-        tag.setString(BLOCK, block.getRegistryName().toString());
+        tag.setString(BLOCK, name);
         return tag;
     }
 

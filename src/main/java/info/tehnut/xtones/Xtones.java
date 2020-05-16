@@ -99,10 +99,10 @@ public final class Xtones {
     @EventHandler
     static void init(final FMLInitializationEvent event) {
         XtonesNetwork.init();
-        if (Loader.isModLoaded("chisel")) {
+        if (Loader.isModLoaded(ChiselSupport.CHISEL)) {
             ChiselSupport.init();
         }
-        if (Loader.isModLoaded("chiselsandbits")) {
+        if (Loader.isModLoaded(ChiselsAndBitsSupport.CHISELS_AND_BITS)) {
             ChiselsAndBitsSupport.init();
         }
     }

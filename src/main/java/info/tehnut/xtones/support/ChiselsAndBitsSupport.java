@@ -9,14 +9,15 @@ import info.tehnut.xtones.Xtones;
 import java.util.Objects;
 
 public final class ChiselsAndBitsSupport {
-    private static final String CHISELS_AND_BITS = "chiselsandbits";
+    public static final String CHISELS_AND_BITS = "chiselsandbits";
+
     private static final String IGNORE_BLOCK_LOGIC = "ignoreblocklogic";
 
     private ChiselsAndBitsSupport() {
     }
 
     public static void init() {
-        for (Tone tone : Tone.values()) {
+        for (final Tone tone : Tone.values()) {
             if (tone.isGlassLike()) {
                 ignoreBlockLogic(Xtones.block(tone));
             }
