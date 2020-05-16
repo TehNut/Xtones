@@ -70,7 +70,8 @@ public final class XtonesClient {
 
     @SubscribeEvent
     static void mousePolled(final MouseEvent event) {
-        if (hasXtoneCycling() && event.getDwheel() != 0 && SCROLL_MODIFIER.isKeyDown()) {
+        final int scroll = event.getDwheel();
+        if (scroll != 0 && hasXtoneCycling() && SCROLL_MODIFIER.isKeyDown()) {
             final Minecraft minecraft = Minecraft.getMinecraft();
             final @Nullable EntityPlayer player = minecraft.player;
             if (player != null && minecraft.currentScreen == null) {
@@ -79,7 +80,7 @@ public final class XtonesClient {
                     hand = EnumHand.OFF_HAND;
                 }
                 if (isXtone(player.getHeldItem(hand))) {
-                    XtonesNetwork.cycleXtone(player, hand, event);
+                    XtonesNetwork.cycleXtone(player, hand, scroll);
                     event.setCanceled(true);
                 }
             }

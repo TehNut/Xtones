@@ -5,7 +5,6 @@ import info.tehnut.xtones.config.XtonesConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumHand;
-import net.minecraftforge.client.event.MouseEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.LogManager;
@@ -26,8 +25,8 @@ public final class XtonesNetwork {
         WRAPPER.registerMessage(ConfigSyncHandler.INSTANCE, ConfigSyncMessage.class, CONFIG_SYNC, Side.CLIENT);
     }
 
-    public static void cycleXtone(final EntityPlayer player, final EnumHand hand, final MouseEvent event) {
-        WRAPPER.sendToServer(new XtoneCycleMessage(player, hand, event.getDwheel()));
+    public static void cycleXtone(final EntityPlayer player, final EnumHand hand, final int scroll) {
+        WRAPPER.sendToServer(new XtoneCycleMessage(player, hand, scroll));
     }
 
     public static void syncConfig(final EntityPlayerMP player) {
