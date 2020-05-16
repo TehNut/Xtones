@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.lwjgl.input.Keyboard;
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.Xtones;
@@ -70,7 +71,7 @@ public final class XtonesClient {
     static void mousePolled(final MouseEvent event) {
         if (hasXtoneCycling() && event.getDwheel() != 0 && SCROLL_MODIFIER.isKeyDown()) {
             final Minecraft minecraft = Minecraft.getMinecraft();
-            final EntityPlayer player = minecraft.player;
+            final @Nullable EntityPlayer player = minecraft.player;
             if (player != null && minecraft.currentScreen == null) {
                 EnumHand hand = EnumHand.MAIN_HAND;
                 if (!isXtone(player.getHeldItem(hand))) {
