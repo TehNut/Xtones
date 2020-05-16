@@ -40,7 +40,6 @@ public final class XtonesClient {
     }
 
     private static boolean serverXtoneCycling = false;
-    private static boolean setFromServer = false;
 
     private XtonesClient() {
     }
@@ -50,11 +49,7 @@ public final class XtonesClient {
     }
 
     public static void setServerXtoneCycling(final boolean state) {
-        if (setFromServer) {
-            throw new IllegalStateException();
-        }
         serverXtoneCycling = state;
-        setFromServer = true;
     }
 
     @SubscribeEvent
