@@ -38,8 +38,7 @@ public final class FlatLampBlock extends BlockDirectional {
         this.setLightOpacity(0);
         this.setDefaultState(this.getDefaultState()
             .withProperty(ACTIVE, false)
-            .withProperty(FACING, EnumFacing.NORTH)
-        );
+            .withProperty(FACING, EnumFacing.UP));
     }
 
     @Override
