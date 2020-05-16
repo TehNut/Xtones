@@ -1,6 +1,11 @@
 package info.tehnut.xtones.client;
 
 
+import info.tehnut.xtones.Tone;
+import info.tehnut.xtones.Xtones;
+import info.tehnut.xtones.config.XtonesConfig;
+import info.tehnut.xtones.item.XtoneBlockItem;
+import info.tehnut.xtones.network.XtonesNetwork;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
@@ -18,14 +23,8 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.lwjgl.input.Keyboard;
-import info.tehnut.xtones.Tone;
-import info.tehnut.xtones.Xtones;
-import info.tehnut.xtones.config.XtonesConfig;
-import info.tehnut.xtones.item.XtoneBlockItem;
-import info.tehnut.xtones.network.XtonesNetwork;
 
 import java.util.Objects;
 
@@ -40,7 +39,8 @@ public final class XtonesClient {
         ClientRegistry.registerKeyBinding(SCROLL_MODIFIER);
     }
 
-    private static @MonotonicNonNull Boolean serverXtoneCycling = null;
+    private static boolean serverXtoneCycling = false;
+    private static boolean setFromServer = false;
 
     private XtonesClient() {
     }
@@ -50,10 +50,11 @@ public final class XtonesClient {
     }
 
     public static void setServerXtoneCycling(final boolean state) {
-        if (serverXtoneCycling != null) {
+        if (setFromServer) {
             throw new IllegalStateException();
         }
         serverXtoneCycling = state;
+        setFromServer = true;
     }
 
     @SubscribeEvent
@@ -92,7 +93,7 @@ public final class XtonesClient {
     }
 
     private static boolean hasXtoneCycling() {
-        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling != null && serverXtoneCycling;
+        return XtonesConfig.hasXtoneCycling() && setFromServer && serverXtoneCycling;
     }
 
     private static boolean isXtone(final ItemStack stack) {
