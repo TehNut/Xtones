@@ -45,8 +45,8 @@ public final class Xtones {
         }
     }.setBackgroundImageName("item_search.png");
 
-    private static final Map<Tone, Block> BLOCKS = new EnumMap<Tone, Block>(Tone.class);
-    private static final Map<Tone, Item> ITEMS = new EnumMap<Tone, Item>(Tone.class);
+    private static final Map<Tone, Block> BLOCKS = new EnumMap<>(Tone.class);
+    private static final Map<Tone, Item> ITEMS = new EnumMap<>(Tone.class);
 
     private static @MonotonicNonNull Block baseBlock;
     private static @MonotonicNonNull Block lampBlock;
