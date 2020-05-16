@@ -36,7 +36,7 @@ public final class Xtones {
     private static final CreativeTabs CREATIVE_TAB = new CreativeTabs(ID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(baseItem);
+            return new ItemStack(baseItem());
         }
 
         @Override
