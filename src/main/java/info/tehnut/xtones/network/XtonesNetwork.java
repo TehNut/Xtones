@@ -16,12 +16,15 @@ public final class XtonesNetwork {
     private static final SimpleNetworkWrapper WRAPPER = new SimpleNetworkWrapper(Xtones.ID);
     private static final Logger LOGGER = LogManager.getLogger();
 
+    private static final int XTONE_CYCLE = 0;
+    private static final int CONFIG_SYNC = 1;
+
     private XtonesNetwork() {
     }
 
     public static void init() {
-        WRAPPER.registerMessage(XtoneCycleHandler.INSTANCE, XtoneCycleMessage.class, 0, Side.SERVER);
-        WRAPPER.registerMessage(ConfigSyncHandler.INSTANCE, ConfigSyncMessage.class, 1, Side.CLIENT);
+        WRAPPER.registerMessage(XtoneCycleHandler.INSTANCE, XtoneCycleMessage.class, XTONE_CYCLE, Side.SERVER);
+        WRAPPER.registerMessage(ConfigSyncHandler.INSTANCE, ConfigSyncMessage.class, CONFIG_SYNC, Side.CLIENT);
     }
 
     @SideOnly(Side.CLIENT)
