@@ -7,9 +7,9 @@ import info.tehnut.xtones.config.XtonesConfig;
 import info.tehnut.xtones.item.XtoneBlockItem;
 import info.tehnut.xtones.network.XtonesNetwork;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -72,7 +72,7 @@ public final class XtonesClient {
     static void mousePolled(final MouseEvent event) {
         if (hasXtoneCycling() && event.getDwheel() != 0 && SCROLL_MODIFIER.isKeyDown()) {
             final Minecraft minecraft = Minecraft.getMinecraft();
-            final @Nullable EntityPlayerSP player = minecraft.player;
+            final @Nullable EntityPlayer player = minecraft.player;
             if (player != null && minecraft.currentScreen == null) {
                 EnumHand hand = EnumHand.MAIN_HAND;
                 if (!isXtone(player.getHeldItem(hand))) {

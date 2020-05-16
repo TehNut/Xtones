@@ -2,12 +2,10 @@ package info.tehnut.xtones.network;
 
 import com.google.common.base.Preconditions;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
 public final class XtoneCycleMessage implements IMessage {
@@ -29,8 +27,7 @@ public final class XtoneCycleMessage implements IMessage {
     public XtoneCycleMessage() {
     }
 
-    @SideOnly(Side.CLIENT)
-    XtoneCycleMessage(final EntityPlayerSP player, final EnumHand hand, final int scroll) {
+    XtoneCycleMessage(final EntityPlayer player, final EnumHand hand, final int scroll) {
         this.hand = hand;
         this.offset = scroll >= 0 ? NEXT : PREV;
         this.slot = isMain(hand) ? checkSlot(hand, player.inventory.currentItem) : OFF_HAND_SLOT;
