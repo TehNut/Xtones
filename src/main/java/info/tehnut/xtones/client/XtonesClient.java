@@ -48,6 +48,10 @@ public final class XtonesClient {
         return SCROLL_MODIFIER.getDisplayName();
     }
 
+    public static boolean canCycleXtones() {
+        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling;
+    }
+
     public static void setServerXtoneCycling(final boolean state) {
         serverXtoneCycling = state;
     }
@@ -66,7 +70,7 @@ public final class XtonesClient {
     @SubscribeEvent
     static void mousePolled(final MouseEvent event) {
         final int scroll = event.getDwheel();
-        if (scroll != 0 && hasXtoneCycling() && SCROLL_MODIFIER.isKeyDown()) {
+        if (scroll != 0 && canCycleXtones() && SCROLL_MODIFIER.isKeyDown()) {
             final Minecraft minecraft = Minecraft.getMinecraft();
             final @Nullable EntityPlayer player = minecraft.player;
             if (player != null && minecraft.currentScreen == null) {
@@ -86,10 +90,6 @@ public final class XtonesClient {
         final ResourceLocation name = Objects.requireNonNull(item.getRegistryName());
         final ModelResourceLocation model = new ModelResourceLocation(name, variant);
         ModelLoader.setCustomModelResourceLocation(item, meta, model);
-    }
-
-    private static boolean hasXtoneCycling() {
-        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling;
     }
 
     private static boolean isXtone(final ItemStack stack) {

@@ -1,6 +1,7 @@
 itemGroup.xtones=Xtones
 
 tooltip.xtones.cycle=Scroll whilst holding %s to cycle
+tooltip.xtones.cycle_disabled=This server has cycling disabled
 
 key.xtones.scroll=Xtone cycling
 
