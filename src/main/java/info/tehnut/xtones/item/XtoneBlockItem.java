@@ -24,7 +24,7 @@ public final class XtoneBlockItem extends ItemMultiTexture {
     }
 
     private static String getTranslationKeySuffix(final ItemStack stack) {
-        return String.valueOf(stack.getItemDamage() & (Tone.VARIANTS - 1));
+        return Integer.toString(stack.getItemDamage() & (Tone.VARIANTS - 1));
     }
 
     @Override
