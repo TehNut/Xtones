@@ -48,6 +48,9 @@ public final class Xtones {
     private static final Map<Tone, Block> BLOCKS = new EnumMap<>(Tone.class);
     private static final Map<Tone, Item> ITEMS = new EnumMap<>(Tone.class);
 
+    private static final String BASE = "base";
+    private static final String LAMP = "lamp_flat";
+
     private static @MonotonicNonNull Block baseBlock;
     private static @MonotonicNonNull Block lampBlock;
     private static @MonotonicNonNull Item baseItem;
@@ -109,15 +112,15 @@ public final class Xtones {
         final IForgeRegistry<Block> registry = event.getRegistry();
 
         registry.register(baseBlock = new Block(Material.ROCK)
-            .setRegistryName(ID, "base")
-            .setTranslationKey(ID + ".base")
+            .setRegistryName(ID, BASE)
+            .setTranslationKey(ID + '.' + LAMP)
             .setCreativeTab(CREATIVE_TAB)
             .setResistance(3.0F)
             .setHardness(3.0F));
 
         registry.register(lampBlock = new FlatLampBlock()
-            .setRegistryName(ID, "lamp_flat")
-            .setTranslationKey(ID + ".lamp_flat")
+            .setRegistryName(ID, LAMP)
+            .setTranslationKey(ID + '.' + LAMP)
             .setCreativeTab(CREATIVE_TAB)
             .setHardness(0.5F));
 
@@ -137,8 +140,8 @@ public final class Xtones {
     static void registerItems(final RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
 
-        registry.register(baseItem = new ItemBlock(baseBlock()).setRegistryName(ID, "base"));
-        registry.register(lampItem = new ItemBlock(lampBlock()).setRegistryName(ID, "lamp_flat"));
+        registry.register(baseItem = new ItemBlock(baseBlock()).setRegistryName(ID, BASE));
+        registry.register(lampItem = new ItemBlock(lampBlock()).setRegistryName(ID, LAMP));
 
         for (final Tone tone : Tone.values()) {
             final Item item = new XtoneBlockItem(block(tone)).setRegistryName(ID, tone.toString());
