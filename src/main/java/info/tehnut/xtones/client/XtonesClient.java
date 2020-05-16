@@ -93,7 +93,7 @@ public final class XtonesClient {
     }
 
     private static boolean hasXtoneCycling() {
-        return XtonesConfig.hasXtoneCycling() && setFromServer && serverXtoneCycling;
+        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling;
     }
 
     private static boolean isXtone(final ItemStack stack) {
