@@ -17,19 +17,20 @@ targetCompatibility = 1.8
 
 repositories {
     maven { url 'https://maven.tterrag.com' }
-    maven { url 'https://tehnut.info/maven' }
+    //maven { url 'https://tehnut.info/maven' }
 }
 
 dependencies {
     implementation 'org.checkerframework:checker-qual:3.3.0'
     deobfProvided 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31:api'
     runtime 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
-    deobfCompile 'mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2'
+    //deobfCompile 'mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2'
 }
 
 minecraft {
     forgeVersion = '1.12.2-14.23.5.2847'
     mappings = 'stable_39'
+    runDir = 'run'
 }
 
 processResources {
