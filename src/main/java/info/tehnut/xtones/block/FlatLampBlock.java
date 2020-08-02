@@ -22,6 +22,7 @@ import net.minecraftforge.common.util.Constants.BlockFlags;
 import java.util.Random;
 
 public final class FlatLampBlock extends BlockDirectional {
+    @SuppressWarnings("UnstableApiUsage")
     private static final ImmutableMap<EnumFacing, AxisAlignedBB> SHAPES =
         Maps.immutableEnumMap(ImmutableMap.<EnumFacing, AxisAlignedBB>builder()
             .put(EnumFacing.UP, new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.1875, 1.0))
@@ -51,7 +52,7 @@ public final class FlatLampBlock extends BlockDirectional {
     @Override
     @Deprecated
     public BlockFaceShape getBlockFaceShape(final IBlockAccess access, final IBlockState state, final BlockPos pos, final EnumFacing facing) {
-        return state.getValue(FACING) == facing.getOpposite() ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
+        return (state.getValue(FACING) == facing.getOpposite()) ? BlockFaceShape.SOLID : BlockFaceShape.UNDEFINED;
     }
 
     @Override
@@ -92,7 +93,7 @@ public final class FlatLampBlock extends BlockDirectional {
         final EnumFacing facing = state.getValue(FACING);
         if (side != facing.getOpposite()) {
             final IBlockState other = access.getBlockState(pos.offset(side));
-            return this == other.getBlock() && facing.getAxis() == other.getValue(FACING).getAxis();
+            return (this == other.getBlock()) && (facing.getAxis() == other.getValue(FACING).getAxis());
         }
         return true;
     }
@@ -100,13 +101,13 @@ public final class FlatLampBlock extends BlockDirectional {
     @Override
     public boolean canPlaceBlockOnSide(final World world, final BlockPos pos, final EnumFacing side) {
         final BlockPos offset = pos.offset(side.getOpposite());
-        return BlockFaceShape.SOLID == world.getBlockState(offset).getBlockFaceShape(world, offset, side);
+        return world.getBlockState(offset).getBlockFaceShape(world, offset, side) == BlockFaceShape.SOLID;
     }
 
     @Override
     @Deprecated
     public IBlockState getStateFromMeta(final int meta) {
-        final boolean active = meta >> 0b11 == 1;
+        final boolean active = (meta >> 0b11) == 1;
         final EnumFacing facing = EnumFacing.values()[meta & 0b111];
         return this.getDefaultState().withProperty(FACING, facing).withProperty(ACTIVE, active);
     }

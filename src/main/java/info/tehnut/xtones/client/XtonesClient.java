@@ -70,10 +70,10 @@ public final class XtonesClient {
     @SubscribeEvent
     static void mousePolled(final MouseEvent event) {
         final int scroll = event.getDwheel();
-        if (scroll != 0 && canCycleXtones() && SCROLL_MODIFIER.isKeyDown()) {
+        if ((scroll != 0) && canCycleXtones() && SCROLL_MODIFIER.isKeyDown()) {
             final Minecraft minecraft = Minecraft.getMinecraft();
             final @Nullable EntityPlayer player = minecraft.player;
-            if (player != null && minecraft.currentScreen == null) {
+            if ((player != null) && (minecraft.currentScreen == null)) {
                 EnumHand hand = EnumHand.MAIN_HAND;
                 if (!isXtone(player.getHeldItem(hand))) {
                     hand = EnumHand.OFF_HAND;

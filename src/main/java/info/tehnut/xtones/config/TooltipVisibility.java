@@ -22,6 +22,6 @@ public enum TooltipVisibility {
 
     @SideOnly(Side.CLIENT)
     public final boolean isVisible() {
-        return this == visible || this == shift && GuiScreen.isShiftKeyDown();
+        return (this == visible) || ((this == shift) && GuiScreen.isShiftKeyDown());
     }
 }

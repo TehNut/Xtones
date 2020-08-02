@@ -22,17 +22,14 @@ public final class XtoneBlock extends Block {
 
     public XtoneBlock(final Tone tone) {
         super(tone.isGlassLike() ? Material.GLASS : Material.ROCK);
-        if (this.glassLike = tone.isGlassLike()) {
+        this.glassLike = tone.isGlassLike();
+        if (this.glassLike) {
             this.renderLayer = BlockRenderLayer.TRANSLUCENT;
             this.setSoundType(SoundType.GLASS);
             this.setLightOpacity(0);
         } else {
             this.renderLayer = BlockRenderLayer.SOLID;
         }
-    }
-
-    public boolean isGlassLike() {
-        return this.glassLike;
     }
 
     @Override
