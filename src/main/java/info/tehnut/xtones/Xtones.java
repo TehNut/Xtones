@@ -1,6 +1,5 @@
 package info.tehnut.xtones;
 
-import com.google.common.base.Preconditions;
 import info.tehnut.xtones.block.FlatLampBlock;
 import info.tehnut.xtones.block.XtoneBlock;
 import info.tehnut.xtones.item.XtoneBlockItem;
@@ -26,7 +25,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Mod(modid = Xtones.ID, useMetadata = true)
+@Mod(modid = Xtones.ID, acceptedMinecraftVersions = "[1.12,1.13)", useMetadata = true)
 @EventBusSubscriber(modid = Xtones.ID)
 public final class Xtones {
     public static final String ID = "xtones";
@@ -44,42 +43,34 @@ public final class Xtones {
     private static @MonotonicNonNull Item lampItem;
 
     public static Stream<Block> blocks() {
-        Preconditions.checkState(!BLOCKS.isEmpty());
         return BLOCKS.values().stream();
     }
 
     public static Stream<Item> items() {
-        Preconditions.checkState(!ITEMS.isEmpty());
         return ITEMS.values().stream();
     }
 
     public static Block block(final Tone tone) {
-        Preconditions.checkState(!BLOCKS.isEmpty());
         return BLOCKS.get(tone);
     }
 
     public static Item item(final Tone tone) {
-        Preconditions.checkState(!ITEMS.isEmpty());
         return ITEMS.get(tone);
     }
 
     public static Block baseBlock() {
-        Preconditions.checkState(baseBlock != null);
         return baseBlock;
     }
 
     public static Block lampBlock() {
-        Preconditions.checkState(lampBlock != null);
         return lampBlock;
     }
 
     public static Item baseItem() {
-        Preconditions.checkState(baseItem != null);
         return baseItem;
     }
 
     public static Item lampItem() {
-        Preconditions.checkState(lampItem != null);
         return lampItem;
     }
 
@@ -98,18 +89,20 @@ public final class Xtones {
     static void registerBlocks(final RegistryEvent.Register<Block> event) {
         final IForgeRegistry<Block> registry = event.getRegistry();
 
-        registry.register(baseBlock = new Block(Material.ROCK)
-            .setRegistryName(ID, BASE)
-            .setTranslationKey(ID + '.' + LAMP)
-            .setCreativeTab(XtonesCreativeTab.instance())
-            .setResistance(3.0F)
-            .setHardness(3.0F));
+        baseBlock = new Block(Material.ROCK)
+          .setRegistryName(ID, BASE)
+          .setTranslationKey(ID + '.' + LAMP)
+          .setCreativeTab(XtonesCreativeTab.instance())
+          .setResistance(3.0F)
+          .setHardness(3.0F);
 
-        registry.register(lampBlock = new FlatLampBlock()
-            .setRegistryName(ID, LAMP)
-            .setTranslationKey(ID + '.' + LAMP)
-            .setCreativeTab(XtonesCreativeTab.instance())
-            .setHardness(0.5F));
+        lampBlock = new FlatLampBlock()
+          .setRegistryName(ID, LAMP)
+          .setTranslationKey(ID + '.' + LAMP)
+          .setCreativeTab(XtonesCreativeTab.instance())
+          .setHardness(0.5F);
+
+        registry.registerAll(baseBlock, lampBlock);
 
         for (final Tone tone : Tone.values()) {
             final Block block = new XtoneBlock(tone)
@@ -127,13 +120,20 @@ public final class Xtones {
     static void registerItems(final RegistryEvent.Register<Item> event) {
         final IForgeRegistry<Item> registry = event.getRegistry();
 
-        registry.register(baseItem = new ItemBlock(baseBlock()).setRegistryName(ID, BASE));
-        registry.register(lampItem = new ItemBlock(lampBlock()).setRegistryName(ID, LAMP));
+        baseItem = new ItemBlock(baseBlock()).setRegistryName(ID, BASE);
+        lampItem = new ItemBlock(lampBlock()).setRegistryName(ID, LAMP);
+
+        registry.registerAll(baseItem, lampItem);
 
         for (final Tone tone : Tone.values()) {
             final Item item = new XtoneBlockItem(block(tone)).setRegistryName(ID, tone.toString());
             registry.register(item);
             ITEMS.put(tone, item);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Xtones";
     }
 }

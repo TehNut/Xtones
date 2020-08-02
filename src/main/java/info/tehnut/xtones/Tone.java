@@ -2,6 +2,7 @@ package info.tehnut.xtones;
 
 import java.util.Locale;
 
+@SuppressWarnings("SpellCheckingInspection")
 public enum Tone {
     AGON,
     AZUR,
