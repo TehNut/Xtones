@@ -7,12 +7,9 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public final class XtonesNetwork {
     private static final SimpleNetworkWrapper WRAPPER = new SimpleNetworkWrapper(Xtones.ID);
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private static final int XTONE_CYCLE = 0;
     private static final int CONFIG_SYNC = 1;

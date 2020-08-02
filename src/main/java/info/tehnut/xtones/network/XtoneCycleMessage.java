@@ -19,7 +19,7 @@ public final class XtoneCycleMessage implements IMessage {
     private static final int INVALID_SLOT = -2;
     private static final int OFF_HAND_SLOT = -1;
 
-    private @MonotonicNonNull EnumHand hand = null;
+    private @MonotonicNonNull EnumHand hand;
     private int offset = ABSENT;
     private int slot = INVALID_SLOT;
 
@@ -29,7 +29,7 @@ public final class XtoneCycleMessage implements IMessage {
 
     XtoneCycleMessage(final EntityPlayer player, final EnumHand hand, final int scroll) {
         this.hand = hand;
-        this.offset = scroll >= 0 ? NEXT : PREV;
+        this.offset = (scroll >= 0) ? NEXT : PREV;
         this.slot = isMain(hand) ? checkSlot(hand, player.inventory.currentItem) : OFF_HAND_SLOT;
     }
 
@@ -39,7 +39,7 @@ public final class XtoneCycleMessage implements IMessage {
 
     private static int checkSlot(final EnumHand hand, final int slot) {
         final boolean hotbar = isMain(hand) && InventoryPlayer.isHotbar(slot);
-        Preconditions.checkArgument(hotbar || slot == OFF_HAND_SLOT, slot);
+        Preconditions.checkArgument(hotbar || (slot == OFF_HAND_SLOT), slot);
         return slot;
     }
 

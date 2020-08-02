@@ -31,7 +31,7 @@ final class XtoneCycleHandler implements IMessageHandler<XtoneCycleMessage, IMes
             LOGGER.warn("{} ({}) tried to cycle when cycling is disabled", profile.getName(), profile.getId());
             return;
         }
-        if ((cycle.getHand() == EnumHand.OFF_HAND ? -1 : player.inventory.currentItem) == cycle.getExpectedSlot()) {
+        if (((cycle.getHand() == EnumHand.OFF_HAND) ? -1 : player.inventory.currentItem) == cycle.getExpectedSlot()) {
             final ItemStack held = player.getHeldItem(cycle.getHand());
             if (!(held.getItem() instanceof XtoneBlockItem)) {
                 final GameProfile profile = player.getGameProfile();
@@ -39,13 +39,12 @@ final class XtoneCycleHandler implements IMessageHandler<XtoneCycleMessage, IMes
                 LOGGER.warn("{} ({}) tried to cycle {}", profile.getName(), profile.getId(), item);
                 return;
             }
-            held.setItemDamage(held.getItemDamage() + cycle.getOffset() & (Tone.VARIANTS - 1));
+            held.setItemDamage((held.getItemDamage() + cycle.getOffset()) & (Tone.VARIANTS - 1));
         }
     }
 
     @Override
-    @Nullable
-    public IMessage onMessage(final XtoneCycleMessage cycle, final MessageContext context) {
+    public @Nullable IMessage onMessage(final XtoneCycleMessage cycle, final MessageContext context) {
         FMLCommonHandler.instance().getMinecraftServerInstance().addScheduledTask(() -> {
             tryCycle(context.getServerHandler().player, cycle);
         });

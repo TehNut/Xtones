@@ -15,14 +15,14 @@ final class ConfigSyncHandler implements IMessageHandler<ConfigSyncMessage, IMes
     private ConfigSyncHandler() {
     }
 
+    @SideOnly(Side.CLIENT)
     private static void readConfig(final ConfigSyncMessage config) {
         XtonesClient.setServerXtoneCycling(config.hasXtoneCycling());
     }
 
     @Override
-    @Nullable
     @SideOnly(Side.CLIENT)
-    public IMessage onMessage(final ConfigSyncMessage config, final MessageContext context) {
+    public @Nullable IMessage onMessage(final ConfigSyncMessage config, final MessageContext context) {
         FMLClientHandler.instance().getClient().addScheduledTask(() -> readConfig(config));
         return null;
     }
