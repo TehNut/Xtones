@@ -16,9 +16,9 @@ public final class ChiselMode {
      */
     public static final int NO_CARVING = 2;
 
-    static final int MIN = BASE_CARVING;
-    static final int MAX = NO_CARVING;
-    static final int DEFAULT = MIN;
+    public static final int MIN = BASE_CARVING;
+    public static final int MAX = NO_CARVING;
+    public static final int DEFAULT = MIN;
 
     private ChiselMode() {
     }

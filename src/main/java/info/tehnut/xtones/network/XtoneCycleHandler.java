@@ -2,7 +2,7 @@ package info.tehnut.xtones.network;
 
 import com.mojang.authlib.GameProfile;
 import info.tehnut.xtones.Tone;
-import info.tehnut.xtones.config.XtonesConfig;
+import info.tehnut.xtones.XtonesConfig;
 import info.tehnut.xtones.item.XtoneBlockItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ final class XtoneCycleHandler implements IMessageHandler<XtoneCycleMessage, IMes
     }
 
     private static void tryCycle(final EntityPlayer player, final XtoneCycleMessage cycle) {
-        if (XtonesConfig.disableScrollCycling) {
+        if (!XtonesConfig.enableScrollCycling) {
             final GameProfile profile = player.getGameProfile();
             LOGGER.warn("{} ({}) tried to cycle when cycling is disabled", profile.getName(), profile.getId());
             return;

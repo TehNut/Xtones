@@ -3,7 +3,7 @@ package info.tehnut.xtones.client;
 
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.Xtones;
-import info.tehnut.xtones.config.XtonesConfig;
+import info.tehnut.xtones.XtonesConfig;
 import info.tehnut.xtones.item.XtoneBlockItem;
 import info.tehnut.xtones.network.XtonesNetwork;
 import net.minecraft.client.Minecraft;
@@ -49,7 +49,7 @@ public final class XtonesClient {
     }
 
     public static boolean canCycleXtones() {
-        return XtonesConfig.hasXtoneCycling() && serverXtoneCycling;
+        return XtonesConfig.enableScrollCycling && serverXtoneCycling;
     }
 
     public static void setServerXtoneCycling(final boolean state) {

@@ -1,7 +1,7 @@
 package info.tehnut.xtones.network;
 
 import info.tehnut.xtones.Xtones;
-import info.tehnut.xtones.config.XtonesConfig;
+import info.tehnut.xtones.XtonesConfig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumHand;
@@ -27,6 +27,6 @@ public final class XtonesNetwork {
     }
 
     public static void syncConfig(final EntityPlayerMP player) {
-        WRAPPER.sendTo(new ConfigSyncMessage(XtonesConfig.hasXtoneCycling()), player);
+        WRAPPER.sendTo(new ConfigSyncMessage(XtonesConfig.enableScrollCycling), player);
     }
 }

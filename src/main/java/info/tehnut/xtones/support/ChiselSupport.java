@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.config.ChiselMode;
-import info.tehnut.xtones.config.XtonesConfig;
+import info.tehnut.xtones.XtonesConfig;
 import info.tehnut.xtones.Xtones;
 
 import java.util.Objects;
