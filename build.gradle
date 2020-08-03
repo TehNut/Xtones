@@ -18,16 +18,12 @@ targetCompatibility = 1.8
 repositories {
     maven { url 'https://maven.tterrag.com' }
     maven { url 'https://dvs1.progwml6.com/files/maven' }
-    //maven { url 'https://tehnut.info/maven' }
 }
 
 dependencies {
     implementation 'org.checkerframework:checker-qual:3.5.0'
-    // Full jar, we use internals (AbstractTexture, Quad)
-    deobfProvided 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
-    deobfProvided 'mezz.jei:jei_1.12.2:4.15.0.292:api'
-    runtime 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
-    runtime 'mezz.jei:jei_1.12.2:4.15.0.292'
+    deobfCompile 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
+    deobfCompile 'mezz.jei:jei_1.12.2:4.15.0.292'
 }
 
 minecraft {
