@@ -91,7 +91,7 @@ public final class Xtones {
 
         baseBlock = new Block(Material.ROCK)
           .setRegistryName(ID, BASE)
-          .setTranslationKey(ID + '.' + LAMP)
+          .setTranslationKey(ID + '.' + BASE)
           .setCreativeTab(XtonesCreativeTab.instance())
           .setResistance(3.0F)
           .setHardness(3.0F);
