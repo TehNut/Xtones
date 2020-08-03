@@ -12,7 +12,6 @@ Version 1.1.0
 - Added compatibility for Chisels and Bits
 - Added support for off-hand xtone cycling
 - Moved xtone enumeration to translation keys
-- Removed base block from Chisel carving variations
 - Added config for creative tab search bar
 - Implemented server validation for xtone cycling
 - Add config for xtone cycling tooltip visibility

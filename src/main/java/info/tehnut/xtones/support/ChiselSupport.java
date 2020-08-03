@@ -1,12 +1,12 @@
 package info.tehnut.xtones.support;
 
+import info.tehnut.xtones.Tone;
+import info.tehnut.xtones.Xtones;
+import info.tehnut.xtones.XtonesConfig;
+import info.tehnut.xtones.config.ChiselMode;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
-import info.tehnut.xtones.Tone;
-import info.tehnut.xtones.config.ChiselMode;
-import info.tehnut.xtones.XtonesConfig;
-import info.tehnut.xtones.Xtones;
 
 import java.util.Objects;
 
@@ -24,6 +24,9 @@ public final class ChiselSupport {
 
     public static void init() {
         if (XtonesConfig.chiselMode != ChiselMode.NO_CARVING) {
+            if (XtonesConfig.chiselMode == ChiselMode.BASE_CARVING) {
+                add(variation(Xtones.baseBlock(), Xtones.ID));
+            }
             Xtones.blocks().forEach(block -> {
                 if (XtonesConfig.chiselMode == ChiselMode.VARIANT_CARVING) {
                     for (final Tone tone : Tone.values()) {
