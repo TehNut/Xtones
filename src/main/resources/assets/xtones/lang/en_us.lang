@@ -1,9 +1,9 @@
 itemGroup.xtones=Xtones
 
-tooltip.xtones.cycle=Scroll whilst holding %s to cycle
-tooltip.xtones.cycle_disabled=This server has cycling disabled
+tooltip.xtones.cycle=Scroll on hotbar whilst holding %s to cycle
+tooltip.xtones.cycle_disabled=This server has scroll cycling disabled
 
-key.xtones.scroll=Xtone cycling
+key.xtones.scroll=Scroll cycling modifier
 
 tile.xtones.base.name=Xtone Tile
 tile.xtones.lamp_flat.name=Flat Lamp
