@@ -14,5 +14,5 @@ Version 1.1.0
 - Moved xtone enumeration to translation keys
 - Added config for creative tab search bar
 - Implemented server validation for xtone cycling
-- Add config for xtone cycling tooltip visibility
+- Added config for xtone cycling tooltip visibility
 - Allowed azur to be crafted with any blue dye
