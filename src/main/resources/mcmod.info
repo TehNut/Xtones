@@ -6,6 +6,8 @@
     "version": "$version",
     "url": "https://github.com/TehNut/Xtones",
     "authorList": [ "Chloe Dawn", "TehNut", "Dhvagra" ],
-    "credits": "Dhvagra for the textures from the original mod, Ztones"
+    "credits": "Dhvagra for the textures from the original mod, Ztones",
+    "useDependencyInformation": true,
+    "requiredMods": [ "forge@[14.23.5.2847,)" ]
   }
 ]

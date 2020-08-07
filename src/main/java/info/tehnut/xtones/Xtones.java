@@ -25,7 +25,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-@Mod(modid = Xtones.ID, acceptedMinecraftVersions = "[1.12,1.13)", useMetadata = true)
+@Mod(modid = Xtones.ID, acceptedMinecraftVersions = "[1.12.2]", useMetadata = true)
 @EventBusSubscriber(modid = Xtones.ID)
 public final class Xtones {
     public static final String ID = "xtones";
