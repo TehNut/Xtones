@@ -1,6 +1,6 @@
-package info.tehnut.xtones;
+package info.tehnut.xtones.config;
 
-import info.tehnut.xtones.config.ChiselMode;
+import info.tehnut.xtones.Xtones;
 import info.tehnut.xtones.network.XtonesNetwork;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.config.Config;
@@ -29,15 +29,34 @@ public final class XtonesConfig {
         "Disables all recipes except the one for the Stone Tile.",
         "Mainly for use with Chisel installed and chiselMode being set to 0."
     })
-    public static boolean enableRecipes = true;
+    public static boolean disableXtoneRecipes = false;
 
     @Comment({
         "Disables the ability to cycle between variants via keybind.",
         "Mainly for use with Chisel installed and chiselMode being set to 1."
     })
-    public static boolean enableScrollCycling = true;
+    public static boolean disableScrollCycling = false;
+
+    @Comment("Enables the search bar on the Xtones creative tab")
+    public static boolean searchableCreativeTab = true;
+
+    @Comment({
+        "Visibility of the cycling tooltip on Xtone items",
+        "   visible - The tooltip will always be visible",
+        "   shift - The tooltip will only be visible when shift is held",
+        "   hidden - The tooltip will not be visible"
+    })
+    public static TooltipVisibility cyclingTooltip = TooltipVisibility.visible;
 
     private XtonesConfig() {
+    }
+
+    public static boolean hasXtoneRecipes() {
+        return !disableXtoneRecipes;
+    }
+
+    public static boolean hasXtoneCycling() {
+        return !disableScrollCycling;
     }
 
     @SubscribeEvent

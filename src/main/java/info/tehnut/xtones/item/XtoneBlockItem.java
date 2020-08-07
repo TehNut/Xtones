@@ -2,8 +2,7 @@ package info.tehnut.xtones.item;
 
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.client.XtonesClient;
-import info.tehnut.xtones.XtonesConfig;
-import info.tehnut.xtones.client.XtonesClientConfig;
+import info.tehnut.xtones.config.XtonesConfig;
 import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -43,12 +42,12 @@ public final class XtoneBlockItem extends ItemMultiTexture {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack stack, final @Nullable World world, final List<String> tooltip, final ITooltipFlag flag) {
-        if (XtonesConfig.enableScrollCycling) {
+        if (XtonesConfig.hasXtoneCycling()) {
             if (!XtonesClient.canCycleXtones()) {
                 tooltip.add(new TextComponentTranslation("tooltip.xtones.cycle_disabled")
                     .setStyle(new Style().setColor(TextFormatting.RED))
                     .getFormattedText());
-            } else if (XtonesClientConfig.cyclingTooltip.isVisible()) {
+            } else if (XtonesConfig.cyclingTooltip.isVisible()) {
                 tooltip.add(I18n.format("tooltip.xtones.cycle", XtonesClient.getScrollModifierName()));
             }
         }

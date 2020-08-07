@@ -16,4 +16,3 @@ Version 1.1.0
 - Implemented server validation for xtone cycling
 - Add config for xtone cycling tooltip visibility
 - Allowed azur to be crafted with any blue dye
-- Refactored config (check your config files!)

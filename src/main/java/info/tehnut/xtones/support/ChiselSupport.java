@@ -2,7 +2,7 @@ package info.tehnut.xtones.support;
 
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.Xtones;
-import info.tehnut.xtones.XtonesConfig;
+import info.tehnut.xtones.config.XtonesConfig;
 import info.tehnut.xtones.config.ChiselMode;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;

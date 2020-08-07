@@ -1,7 +1,7 @@
 package info.tehnut.xtones.item;
 
 import info.tehnut.xtones.Xtones;
-import info.tehnut.xtones.client.XtonesClientConfig;
+import info.tehnut.xtones.config.XtonesConfig;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -23,11 +23,11 @@ public final class XtonesCreativeTab extends CreativeTabs {
 
     @Override
     public String getBackgroundImageName() {
-        return XtonesClientConfig.searchableCreativeTab ? "item_search.png" : "items.png";
+        return XtonesConfig.searchableCreativeTab ? "item_search.png" : "items.png";
     }
 
     @Override
     public boolean hasSearchBar() {
-        return XtonesClientConfig.searchableCreativeTab;
+        return XtonesConfig.searchableCreativeTab;
     }
 }
