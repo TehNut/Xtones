@@ -20,8 +20,8 @@
       "item": "xtones:base"
     },
     "C": {
-      "item": "minecraft:dye",
-      "data": 7
+      "ore": "dyeLightGray",
+      "type": "forge:ore_dict"
     }
   }
 }
