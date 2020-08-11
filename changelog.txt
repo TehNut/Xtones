@@ -22,3 +22,9 @@ Version 1.1.1
 ------------------------------------------------------
 
 - Removed unintended CUSTOM suffix from mod version
+
+------------------------------------------------------
+Version 1.2.0
+------------------------------------------------------
+
+- Allowed more tones to be crafted using ore dictionary dyes (#21)
