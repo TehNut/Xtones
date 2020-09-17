@@ -48,7 +48,8 @@ public final class ChiselSupport {
     }
 
     private static NBTTagCompound variation(final Block block, final Tone tone) {
-        final NBTTagCompound tag = variation(block, tone.toString());
+        final String group = Objects.requireNonNull(block.getRegistryName()).toString();
+        final NBTTagCompound tag = variation(block, group);
         tag.setInteger(META, tone.ordinal());
         return tag;
     }

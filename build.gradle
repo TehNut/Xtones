@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'info.tehnut'
-version = '1.2.0'
+version = '1.2.1'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -19,6 +19,7 @@ repositories {
 dependencies {
     implementation 'org.checkerframework:checker-qual:3.5.0'
     deobfCompile 'team.chisel.ctm:CTM:MC1.12.2-1.0.2.31'
+    deobfCompile 'team.chisel:Chisel:MC1.12.2-1.0.2.45'
     deobfCompile 'mezz.jei:jei_1.12.2:4.15.0.292'
 }
 
