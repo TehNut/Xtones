@@ -3,8 +3,8 @@
   "parent": "minecraft:block/block",
   "textures": {
     "particle": "#top",
-    "bottom": "xtones:blocks/lamp_flat/bottom",
-    "side": "xtones:blocks/lamp_flat/side"
+    "bottom": "xtones:blocks/lamp_flat/lamp_down",
+    "side": "xtones:blocks/lamp_flat/lamp_side"
   },
   "elements": [
     {

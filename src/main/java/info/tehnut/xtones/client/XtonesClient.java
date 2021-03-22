@@ -3,6 +3,7 @@ package info.tehnut.xtones.client;
 
 import info.tehnut.xtones.Tone;
 import info.tehnut.xtones.Xtones;
+import info.tehnut.xtones.block.XtoneBlock;
 import info.tehnut.xtones.config.XtonesConfig;
 import info.tehnut.xtones.item.XtoneBlockItem;
 import info.tehnut.xtones.network.XtonesNetwork;
@@ -59,8 +60,8 @@ public final class XtonesClient {
     @SubscribeEvent
     static void registerModels(final ModelRegistryEvent event) {
         Xtones.items().forEach(item -> {
-            for (int variant = 0; variant < Tone.VARIANTS; ++variant) {
-                setCustomModelResourceLocation(item, variant, "variant=" + variant);
+            for (final XtoneBlock.Variant variant : XtoneBlock.Variant.values()) {
+                setCustomModelResourceLocation(item, variant.ordinal(), "variant=" + variant);
             }
         });
         setCustomModelResourceLocation(Xtones.baseItem(), 0, "normal");

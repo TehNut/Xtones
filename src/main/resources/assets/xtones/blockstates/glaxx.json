@@ -5,22 +5,22 @@
   },
   "variants": {
     "variant": {
-      "0": { "textures": { "all": "xtones:blocks/glaxx/0" } },
-      "1": { "textures": { "all": "xtones:blocks/glaxx/1" } },
-      "2": { "textures": { "all": "xtones:blocks/glaxx/2" } },
-      "3": { "textures": { "all": "xtones:blocks/glaxx/3" } },
-      "4": { "textures": { "all": "xtones:blocks/glaxx/4" } },
-      "5": { "textures": { "all": "xtones:blocks/glaxx/5" } },
-      "6": { "textures": { "all": "xtones:blocks/glaxx/6" } },
-      "7": { "textures": { "all": "xtones:blocks/glaxx/7" } },
-      "8": { "textures": { "all": "xtones:blocks/glaxx/8" } },
-      "9": { "textures": { "all": "xtones:blocks/glaxx/9" } },
-      "10": { "textures": { "all": "xtones:blocks/glaxx/10" } },
-      "11": { "textures": { "all": "xtones:blocks/glaxx/11" } },
-      "12": { "textures": { "all": "xtones:blocks/glaxx/12" } },
-      "13": { "textures": { "all": "xtones:blocks/glaxx/13" } },
-      "14": { "textures": { "all": "xtones:blocks/glaxx/14" } },
-      "15": { "textures": { "all": "xtones:blocks/glaxx/15" } }
+      "one": { "textures": { "all": "xtones:blocks/glaxx/0" } },
+      "two": { "textures": { "all": "xtones:blocks/glaxx/1" } },
+      "three": { "textures": { "all": "xtones:blocks/glaxx/2" } },
+      "four": { "textures": { "all": "xtones:blocks/glaxx/3" } },
+      "five": { "textures": { "all": "xtones:blocks/glaxx/4" } },
+      "six": { "textures": { "all": "xtones:blocks/glaxx/5" } },
+      "seven": { "textures": { "all": "xtones:blocks/glaxx/6" } },
+      "eight": { "textures": { "all": "xtones:blocks/glaxx/7" } },
+      "nine": { "textures": { "all": "xtones:blocks/glaxx/8" } },
+      "ten": { "textures": { "all": "xtones:blocks/glaxx/9" } },
+      "eleven": { "textures": { "all": "xtones:blocks/glaxx/10" } },
+      "twelve": { "textures": { "all": "xtones:blocks/glaxx/11" } },
+      "thirteen": { "textures": { "all": "xtones:blocks/glaxx/12" } },
+      "fourteen": { "textures": { "all": "xtones:blocks/glaxx/13" } },
+      "fifteen": { "textures": { "all": "xtones:blocks/glaxx/14" } },
+      "sixteen": { "textures": { "all": "xtones:blocks/glaxx/15" } }
     }
   }
 }

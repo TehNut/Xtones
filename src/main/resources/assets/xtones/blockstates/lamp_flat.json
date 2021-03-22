@@ -6,10 +6,10 @@
   "variants": {
     "active": {
       "true": {
-        "textures": { "top": "xtones:blocks/lamp_flat/top_on" }
+        "textures": { "top": "xtones:blocks/lamp_flat/lamp_up_on" }
       },
       "false": {
-        "textures": { "top": "xtones:blocks/lamp_flat/top_off" }
+        "textures": { "top": "xtones:blocks/lamp_flat/lamp_up_off" }
       }
     },
     "facing": {

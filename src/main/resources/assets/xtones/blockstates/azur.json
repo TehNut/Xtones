@@ -5,22 +5,22 @@
   },
   "variants": {
     "variant": {
-      "0": { "textures": { "all": "xtones:blocks/azur/0" } },
-      "1": { "textures": { "all": "xtones:blocks/azur/1" } },
-      "2": { "textures": { "all": "xtones:blocks/azur/2" } },
-      "3": { "textures": { "all": "xtones:blocks/azur/3" } },
-      "4": { "textures": { "all": "xtones:blocks/azur/4" } },
-      "5": { "textures": { "all": "xtones:blocks/azur/5" } },
-      "6": { "textures": { "all": "xtones:blocks/azur/6" } },
-      "7": { "textures": { "all": "xtones:blocks/azur/7" } },
-      "8": { "textures": { "all": "xtones:blocks/azur/8" } },
-      "9": { "textures": { "all": "xtones:blocks/azur/9" } },
-      "10": { "textures": { "all": "xtones:blocks/azur/10" } },
-      "11": { "textures": { "all": "xtones:blocks/azur/11" } },
-      "12": { "textures": { "all": "xtones:blocks/azur/12" } },
-      "13": { "textures": { "all": "xtones:blocks/azur/13" } },
-      "14": { "textures": { "all": "xtones:blocks/azur/14" } },
-      "15": { "textures": { "all": "xtones:blocks/azur/15" } }
+      "one": { "textures": { "all": "xtones:blocks/azur/0" } },
+      "two": { "textures": { "all": "xtones:blocks/azur/1" } },
+      "three": { "textures": { "all": "xtones:blocks/azur/2" } },
+      "four": { "textures": { "all": "xtones:blocks/azur/3" } },
+      "five": { "textures": { "all": "xtones:blocks/azur/4" } },
+      "six": { "textures": { "all": "xtones:blocks/azur/5" } },
+      "seven": { "textures": { "all": "xtones:blocks/azur/6" } },
+      "eight": { "textures": { "all": "xtones:blocks/azur/7" } },
+      "nine": { "textures": { "all": "xtones:blocks/azur/8" } },
+      "ten": { "textures": { "all": "xtones:blocks/azur/9" } },
+      "eleven": { "textures": { "all": "xtones:blocks/azur/10" } },
+      "twelve": { "textures": { "all": "xtones:blocks/azur/11" } },
+      "thirteen": { "textures": { "all": "xtones:blocks/azur/12" } },
+      "fourteen": { "textures": { "all": "xtones:blocks/azur/13" } },
+      "fifteen": { "textures": { "all": "xtones:blocks/azur/14" } },
+      "sixteen": { "textures": { "all": "xtones:blocks/azur/15" } }
     }
   }
 }
